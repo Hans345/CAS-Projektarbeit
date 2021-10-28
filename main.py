@@ -29,7 +29,7 @@ if __name__ == '__main__':
     print_hi('PyCharm')
     try:
         if client.connect():
-            result = client.read_holding_registers(address=0x6000, count=2, unit=0x03)
+            result = client.read_input_registers(address=0x4000, count=2)
             decod = BinaryPayloadDecoder.fromRegisters(result.registers, endian=Endian.Big)
             print("Result: ")
             print(decod)
