@@ -136,5 +136,6 @@ if __name__ == '__main__':
     # link=/tmp/ttyp0,raw,echo=0,ospeed=9600
     loop, client = ModbusClient(schedulers.ASYNC_IO, port='/dev/ttyUSB0',
                                 baudrate=9600, method="rtu")
-    loop.run_until_complete(start_async_test(client.protocol))
+    result = client.read_holding_registers
+    #loop.run_until_complete(start_async_test(client.protocol))
     loop.close()
