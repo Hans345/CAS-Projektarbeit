@@ -21,10 +21,10 @@ instrument.clear_buffers_before_each_transaction = True
 
 # Read temperatureas a float
 # if you need to read a 16 bit register use instrument.read_register()
-Vl3 = instrument.read_float(L3_Register)
+Vl3 = instrument.read_register(L3_Register)
 
 # Read the humidity
-f = instrument.read_float(f_Register)
+f = instrument.read_register(f_Register)
 
 # Pront the values
 print('The Voltage is: %.1f V\r' % Vl3)
