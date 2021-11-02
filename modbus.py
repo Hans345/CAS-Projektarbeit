@@ -1,4 +1,5 @@
 import minimalmodbus
+import datetime as dt
 import numpy as np
 import pandas as pd
 
@@ -8,7 +9,7 @@ def initModbus(prt, slaveAddress):
     """
     :param prt: type: string
     :param slaveAddress:  type: string
-    :return: no return
+    :return: instrument: minimalmodbusobject
     """
     # Set up instrument
     instrument = minimalmodbus.Instrument(prt, slaveAddress, mode=minimalmodbus.MODE_RTU)
@@ -21,6 +22,8 @@ def initModbus(prt, slaveAddress):
     # Good practice
     instrument.close_port_after_each_call = True
     instrument.clear_buffers_before_each_transaction = True
+
+    return instrument
 
 
 ###############################################################################
@@ -52,17 +55,26 @@ def getAdrSpace(startAdr, endAdr, adrOffset):
 
 
 ###############################################################################
-def getData(adrSpace, s):
+def getDataRow(instrument, adrSpace, s):
     """
+    :param instrument: type modbusObject
     :param adrSpace: type: ndarray
-    :param str: type: list
+    :param s: type: list
     :return: type: DataFrame
     """
+
+    l = s.__len__()
     # Check Input
     if (adrSpace.shape[0] == s.__len__()):
-        l = s.__len__()
         # init Data Frame
-        df = pd.DataFrame([], columns=s)
+        df = pd.DataFrame([], columns=["time",s])
+
+        # read data Row
+        df[0] = dt.datetime.now()
+        for i in range(l):
+            df[i+1] = instrument.read_float(adrSpace[i])
+
+        #
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
@@ -70,16 +82,16 @@ def getData(adrSpace, s):
 
 
 # init Modbus
-# port = '/dev/ttyUSB0'
-# adr = '01'
-# initModbus(port,adr)
+port = '/dev/ttyUSB0'
+adr = '01'
+modBus = initModbus(port,adr)
 
-# calc Register Adresses
-adr = getAdrSpace("5000", "5030", "02")
-print(adr)
+# calc Register Addresses
+adrSpace = getAdrSpace("5000", "5030", "02")
+print(adrSpace)
 
 # read Data and Store to pandas Dataframe
 s = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum", "q_L1",
       "q_L2", "q_L3", "s_sum", "s_L1", "s_L2", "s_L3", "pf", "pf_L1", "pf_L2", "pf_L3"])
-data = getData(adr, s)
+data = getDataRow(modBus, adrSpace, s)
 print(data)
