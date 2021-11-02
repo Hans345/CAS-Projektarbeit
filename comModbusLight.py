@@ -67,8 +67,9 @@ def addCRC(data):
 ## Zähler auslesen
 adr = '01'
 fkt = '03'
-leng = '01'
-reg = '0014' # Frequenz
+reg = '5002' # L1 Voltage
+anzReg = 2
+leng = '%04x'%(anzReg*2)  # 30hex = 48 Bytes (96 hex stellen) 24 Register
 form = '>f'
 askStr = adr + fkt + reg + leng
 askIntcrc = addCRC(askStr)
@@ -76,8 +77,8 @@ ask = bytes(askIntcrc)
 blen = 12
 
 # Daten schreiben und
-port = serial.Serial(port = 'com3',\
-    baudrate = 9800, \
+port = serial.Serial(port = '/dev/ttyUSB0',\
+    baudrate = 9600, \
     bytesize = 8, \
     parity = 'E', \
     stopbits = 1, \
