@@ -72,7 +72,7 @@ def getDataRow(instrument, adrSpace, s):
         # read data Row
         df[0] = dt.datetime.now()
         for i in range(l):
-            df[i] = instrument.read_float(adrSpace[i])
+            df[i] = instrument.read_float(int(adrSpace[i]))
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
