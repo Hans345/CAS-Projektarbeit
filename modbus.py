@@ -66,17 +66,18 @@ def getDataRow(instrument, adrSpace, s):
     l = s.__len__()
     # Check Input
     if (adrSpace.shape[0] == s.__len__()):
-        # init Data Frame
-        df = pd.DataFrame([], columns=s)
-
-        # read data Row
-        df[0] = dt.datetime.now()
-        for i in range(l):
-            df[i] = instrument.read_float(int(adrSpace[i]))
+        # # init Data Frame
+        # df = pd.DataFrame([], columns=s)
+        #
+        # # read data Row
+        # df[0] = dt.datetime.now()
+        # for i in range(l):
+        test = instrument.read_float(int(adrSpace[1]))
+        print("Read Adress: " + str(int(adrSpace[1])))
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
-    return df
+    return test
 
 
 # init Modbus
