@@ -18,7 +18,7 @@ def initModbus(prt, slaveAddress):
     instrument.serial.bytesize = 8
     instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
     instrument.serial.stopbits = 1
-    instrument.serial.timeout = 0.1  # seconds
+    instrument.serial.timeout = 1  # seconds
     # Good practice
     instrument.close_port_after_each_call = True
     instrument.clear_buffers_before_each_transaction = True
@@ -66,13 +66,13 @@ def getDataRow(instrument, adrSpace, s):
     l = s.__len__()
     # Check Input
     if (adrSpace.shape[0] == s.__len__()):
-        # # init Data Frame
+        # init Data Frame
         # df = pd.DataFrame([], columns=s)
-        #
-        # # read data Row
-        # df[0] = dt.datetime.now()
-        # for i in range(l):
-        test = instrument.read_float(int(adrSpace[1]))
+        
+        # read data Row
+        # data = np.array()
+    for i in range(l):
+        test = instrument.read_float(int(adrSpace[3]))
         print("Read Adress: " + str(int(adrSpace[3])))
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
