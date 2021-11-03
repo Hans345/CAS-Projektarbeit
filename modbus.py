@@ -70,10 +70,9 @@ def getDataRow(instrument, adrSpace, s):
         # df = pd.DataFrame([], columns=s)
         
         # read data Row
-        # data = np.array()
+        data = np.array(np.zeros(l), dtype=float)
     for i in range(l):
-        test = instrument.read_float(int(adrSpace[3]))
-        print("Read Adress: " + str(int(adrSpace[3])))
+        data[i] = instrument.read_float(int(adrSpace[i]))
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
