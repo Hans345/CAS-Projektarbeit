@@ -67,14 +67,12 @@ def getDataRow(instrument, adrSpace, s):
     # Check Input
     if (adrSpace.shape[0] == s.__len__()):
         # init Data Frame
-        df = pd.DataFrame([], columns=["time",s])
+        df = pd.DataFrame([], columns=s)
 
         # read data Row
         df[0] = dt.datetime.now()
         for i in range(l):
-            df[i+1] = instrument.read_float(adrSpace[i])
-
-        #
+            df[i] = instrument.read_float(adrSpace[i])
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
