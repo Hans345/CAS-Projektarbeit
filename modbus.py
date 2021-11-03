@@ -81,7 +81,7 @@ def getDataRow(instrument, adrSpace, s):
 
 # init Modbus
 port = '/dev/ttyUSB0'
-adr = '01'
+adr = 1
 modBus = initModbus(port,adr)
 
 # calc Register Addresses
