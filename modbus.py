@@ -71,11 +71,11 @@ def getDataRow(instrument, adrSpace, s):
         for i in range(l):
             data[i] = instrument.read_float(int(adrSpace[i]))
         # save to  Data Frame
-        df = pd.DataFrame(data, columns=s)
+        # df = pd.DataFrame(data, columns=s)
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
-    return df
+    return data
 
 
 # init Modbus
