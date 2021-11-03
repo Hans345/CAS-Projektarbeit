@@ -76,7 +76,7 @@ def getDataRow(instrument, adrSpace, s):
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
-    return test
+    return data
 
 
 # init Modbus
