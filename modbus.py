@@ -31,7 +31,7 @@ def hex2int(a):
     """
     wandelt Hex-Value (type list) in numpy-Value um.
     """
-    b = int(a, 16)
+    b = np.array(int(a, 16))
     return b
 
 
@@ -47,7 +47,7 @@ def getAdrSpace(startAdr, endAdr, adrOffset):
     l = int((integer_input[1] - integer_input[0]) / integer_input[2] + 1)
 
     curr_address = integer_input[0]
-    integer_address = np.zeros(l)
+    integer_address = np.zeros(l, dtype=int)
     for i in range(l):
         integer_address[i] = curr_address
         curr_address = curr_address + integer_input[2]
