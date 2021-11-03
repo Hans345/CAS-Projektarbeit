@@ -76,8 +76,8 @@ def getDataRow(instrument, adrSpace, s):
 
         # save to  Data Frame
         df = pd.DataFrame(data, columns=s)
-        df.assign(time=dt.datetime.now())
-        df.set_index('time', drop=True, inplace=True)
+        df = df.assign(time=dt.datetime.now())
+        df = df.set_index('time', drop=True, inplace=True)
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
