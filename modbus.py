@@ -68,10 +68,16 @@ def getDataRow(instrument, adrSpace, s):
     if (adrSpace.shape[0] == s.__len__()):
         # read data Row
         data = np.array(np.zeros(l), dtype=float)[np.newaxis] # Zeilenvektor
+        t0 = dt.datetime.now()
         for i in range(l):
             data[0,i] = instrument.read_float(int(adrSpace[i]))
+        t1 = dt.datetime.now()
+        print('Time for reading: ' + str(t1 - t0))
+
         # save to  Data Frame
         df = pd.DataFrame(data, columns=s)
+        df.assign(time=dt.datetime.now())
+        df.set_index('time', drop=True, inplace=True)
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
