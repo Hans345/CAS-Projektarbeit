@@ -1,18 +1,27 @@
-import minimalmodbus
+"""
+Kommunikation mit PRO380
+@author: Raphael Baumeler/2021
+
+Folgende funktion wird extern benötigt: get_data()
+Es können nur floats gelesen werden.
+Wenn neue Register gelesen werden sollen muss nur diese Funktion angepasst werden
+"""
+
 import datetime as dt
+import minimalmodbus
 import numpy as np
 import pandas as pd
 
 
 ###############################################################################
-def initModbus(prt, slaveAddress):
+def init_modbus(prt, slave_adr):
     """
     :param prt: type: string
-    :param slaveAddress:  type: string
+    :param slave_adr:  type: string
     :return: instrument: minimalmodbusobject
     """
     # Set up instrument
-    instrument = minimalmodbus.Instrument(prt, slaveAddress, mode=minimalmodbus.MODE_RTU)
+    instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU)
     # Make the settings explicit
     instrument.serial.baudrate = 9600  # Baud
     instrument.serial.bytesize = 8
@@ -36,15 +45,15 @@ def hex2int(a):
 
 
 ###############################################################################
-def getAdrSpace(startAdr, endArd, adrOffset):
+def get_adr_space(start_adr, end_ard, adr_offset):
     """
-    :param startAdr: type: string array in hex
-    :param endArd: type: string array in hex
-    :param adrOffset: type: string array in hex
+    :param start_adr: type: string array in hex
+    :param end_ard: type: string array in hex
+    :param adr_offset: type: string array in hex
     :return: type: Adressraum in dezimal
     """
-    integer_input = [hex2int(startAdr), hex2int(endArd), hex2int(adrOffset)]
-    l = int((integer_input[1] - integer_input[0]) / integer_input[2] + 1)
+    integer_input = [hex2int(start_adr), hex2int(end_ard), hex2int(adr_offset)]
+    l: int = int((integer_input[1] - integer_input[0]) / integer_input[2] + 1)
 
     curr_address = integer_input[0]
     integer_address = np.zeros(l, dtype=int)
@@ -55,26 +64,23 @@ def getAdrSpace(startAdr, endArd, adrOffset):
 
 
 ###############################################################################
-def getDataRow(instrument, adrSpace, s):
+def get_data_row(instrument, adr_space, s):
     """
     :param instrument: type modbusObject
-    :param adrSpace: type: ndarray
+    :param adr_space: type: ndarray
     :param s: type: list
     :return: type: DataFrame
     """
 
-    l = s.__len__()
+    l: object = s.__len__()
     # Check Input
-    if (adrSpace.shape[0] == s.__len__()):
+    if adr_space.shape[0] == s.__len__():
         # read data Row
-        data = np.array(np.zeros(l), dtype=float)[np.newaxis] # Zeilenvektor
+        data = np.array(np.zeros(l), dtype=float)[np.newaxis]  # Zeilenvektor
         for i in range(l):
-            data[0,i] = instrument.read_float(int(adrSpace[i]))
-
+            data[0, i] = instrument.read_float(int(adr_space[i]))
         # save to  Data Frame
         df = pd.DataFrame(data, columns=s)
-        # df = df.assign(time=dt.datetime.now())
-        # df = df.set_index('time', drop=True)
     else:
         print('Inputparameter müssen die gleiche Grösse haben!')
 
@@ -82,7 +88,7 @@ def getDataRow(instrument, adrSpace, s):
 
 
 ###############################################################################
-def delDataCol(data, s):
+def del_data_col(data, s):
     """
     :param data: type: Data Frame
     :param s: type: string
@@ -90,32 +96,34 @@ def delDataCol(data, s):
     """
     return data.drop(columns=s)
 
-def getData():
+
+###############################################################################
+def get_data():
     """
     :return: type: DataFrame
     """
     # init Modbus
     port = '/dev/ttyUSB0'
     adr = 1
-    modBus = initModbus(port, adr)
+    mod_bus = init_modbus(port, adr)
 
     # calc Register Addresses
-    adrSpace1 = getAdrSpace("5000", "5030", "02")
-    adrSpace2 = getAdrSpace("6006", "600A", "02")
-    adrSpace3 = getAdrSpace("602A", "602E", "02")
+    adr_space1 = get_adr_space("5000", "5030", "02")
+    adr_space2 = get_adr_space("6006", "600A", "02")
+    adr_space3 = get_adr_space("602A", "602E", "02")
 
     # read Data and Store to pandas Dataframe
     s1 = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum",
            "q_L1", "q_L2", "q_L3", "s_sum", "s_L1", "s_L2", "s_L3", "pf", "pf_L1", "pf_L2", "pf_L3"])
     s2 = (["eAct_L1", "eAct_L2", "eAct_L3"])
     s3 = (["eReact_L1", "eReact_L2", "eReact_L3"])
-    data1 = getDataRow(modBus, adrSpace1, s1)
-    data2 = getDataRow(modBus, adrSpace2, s2)
-    data3 = getDataRow(modBus, adrSpace3, s3)
+    data1 = get_data_row(mod_bus, adr_space1, s1)
+    data2 = get_data_row(mod_bus, adr_space2, s2)
+    data3 = get_data_row(mod_bus, adr_space3, s3)
 
     # clear unrelevant Data Cols
-    sDel = (["V", "I"])
-    data1 = delDataCol(data1, sDel)
+    s_del = (["V", "I"])
+    data1 = del_data_col(data1, s_del)
 
     # final DataRow
     data = pd.concat([data1, data2, data3], axis=1)
@@ -123,36 +131,3 @@ def getData():
     data = data.set_index('time', drop=True)
 
     return data
-
-
-
-# print all
-# print("##########")
-# print("Addressraum 1:\n" + str(adrSpace1))
-# print("##########")
-# print("Addressraum 2:\n" + str(adrSpace2))
-# print("##########")
-# print("Addressraum 3:\n" + str(adrSpace3))
-# print("##########")
-# print("##########")
-# print("Data 1: \n" + str(data1.dtypes))
-# print("Data 1: \n" + str(data1))
-# print("##########")
-# print("Data 2: \n" + str(data2.dtypes))
-# print("Data 2: \n" + str(data2))
-# print("##########")
-# print("Data 3: \n" + str(data3.dtypes))
-# print("Data 3: \n" + str(data3))
-
-# test = pd.DataFrame([[data1.iloc[0]["V_L3"], data1.iloc[0]["I_L3"], data1.iloc[0]["pf_L3"], data1.iloc[0]["p_L3"],
-#                       data2.iloc[0]["eAct_L3"],
-#                       data3.iloc[0]["eReact_L3"]]])
-# print("Relevant Data: \n" + str(test))
-
-t0 = dt.datetime.now()
-print("Final DataRow: \n" + str(getData()))
-t1 = dt.datetime.now()
-print('Time for reading: ' + str(t1 - t0))
-
-
-
