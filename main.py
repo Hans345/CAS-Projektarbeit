@@ -13,7 +13,7 @@ curr_Size = 0
 
 # delete old database
 if my_file.is_file():
-    del_database(my_dir)
+    del_database(my_file)
 
 # create new database with maxsize
 for i in range(10):
