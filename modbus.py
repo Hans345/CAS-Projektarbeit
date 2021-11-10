@@ -78,7 +78,7 @@ def get_data_row(instrument, adr_space, s):
         # read data Row
         data = np.array(np.zeros(l), dtype=float)[np.newaxis]  # Zeilenvektor
         for i in range(l):
-            data[0, i] = instrument.read_float(int(adr_space[i]))
+            data[0, i] = np.around(instrument.read_float(int(adr_space[i])), 2)
         # save to  Data Frame
         df = pd.DataFrame(data, columns=s)
     else:
@@ -109,24 +109,23 @@ def get_data():
 
     # calc Register Addresses
     adr_space1 = get_adr_space("5000", "5030", "02")
-    adr_space2 = get_adr_space("6006", "600A", "02")
-    adr_space3 = get_adr_space("602A", "602E", "02")
+    adr_space2 = get_adr_space("6000", "600A", "02")
+    adr_space3 = get_adr_space("6024", "602E", "02")
 
     # read Data and Store to pandas Dataframe
     s1 = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum",
            "q_L1", "q_L2", "q_L3", "s_sum", "s_L1", "s_L2", "s_L3", "pf", "pf_L1", "pf_L2", "pf_L3"])
-    s2 = (["eAct_L1", "eAct_L2", "eAct_L3"])
-    s3 = (["eReact_L1", "eReact_L2", "eReact_L3"])
+    s2 = (["eAct_Tot", "eAct_Tot1", "e_Act_Tot2", "eAct_L1", "eAct_L2", "eAct_L3"])
+    s3 = (["eReact_Tot", "eReact_Tot1", "eReact_Tot2", "eReact_L1", "eReact_L2", "eReact_L3"])
     data1 = get_data_row(mod_bus, adr_space1, s1)
     data2 = get_data_row(mod_bus, adr_space2, s2)
     data3 = get_data_row(mod_bus, adr_space3, s3)
 
-    # clear unrelevant Data Cols
-    s_del = (["V", "I"])
-    data1 = del_data_col(data1, s_del)
-
-    # final DataRow
     data = pd.concat([data1, data2, data3], axis=1)
+    # clear unrelevant Data Cols
+    s_del = (["V", "I", "eAct_Tot1", "e_Act_Tot2", "eReact_Tot1", "eReact_Tot2"])
+    # create final DataRow
+    data = del_data_col(data, s_del)
     data = data.assign(time=dt.datetime.now())
     data = data.set_index('time', drop=True)
 
