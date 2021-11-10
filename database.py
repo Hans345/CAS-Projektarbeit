@@ -1,4 +1,7 @@
-
+"""
+Store Data to .csv
+@author: Raphael Baumeler/2021
+"""
 ###############################################################################
 def store_data(data_row, dir_path, dir_file):
     size = 0

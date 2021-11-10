@@ -26,4 +26,3 @@ for i in range(10):
         break
 
 print(data.head())
-print(data["eAct_Tot"])
