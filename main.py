@@ -18,8 +18,8 @@ if my_file.is_file():
 # create new database with maxsize
 for i in range(10):
     if curr_Size < max_Size:
-        data = data.append(get_data())
         dataRow = get_data()
+        data = data.append(dataRow)
         curr_Size = store_data(dataRow, my_dir, my_file)
     else:
         print("Database is full: " + str(curr_Size) + "Bytes")
