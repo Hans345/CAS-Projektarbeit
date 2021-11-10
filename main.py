@@ -3,9 +3,9 @@ import datetime as dt
 import pandas as pd
 
 from modbus import get_data
-from database import store_data, del_database
+from database import *
+from parameters import *
 
-max_Size = 400  # 100 * 10 ** 6  # 100 MB
 curr_Size = 0
 
 data = pd.DataFrame()
