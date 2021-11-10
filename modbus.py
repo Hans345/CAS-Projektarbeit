@@ -118,7 +118,7 @@ data3 = getDataRow(modBus, adrSpace2, s3)
 # print("##########")
 # print("Data 3: \n" + str(data3.dtypes))
 # print("Data 3: \n" + str(data3))
-test = pd.DataFrame([[data1.iloc[0]["V_L3"], data1.iloc[0]["I_L3"], data1.iloc[0]["pf_L3"], data1.iloc["p_L3"],
+test = pd.DataFrame([[data1.iloc[0]["V_L3"], data1.iloc[0]["I_L3"], data1.iloc[0]["pf_L3"], data1.iloc[0]["p_L3"],
                       data2.iloc[0]["eAct_L3"],
                       data3.iloc[0]["eReact_L3"]]])
 print("Relevant Data: \n" + str(test))
