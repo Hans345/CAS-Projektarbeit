@@ -1,2 +1,2 @@
 # Database Param
-max_Size = 600  # 100 * 10 ** 6  # 100 MB
+max_Size = 1000  # max Size (Byte)
