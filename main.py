@@ -1,7 +1,11 @@
 import datetime as dt
+
+import pandas as pd
+
 from modbus import get_data
 
-t0 = dt.datetime.now()
-print("Final DataRow: \n" + str(get_data()))
-t1 = dt.datetime.now()
-print('Time for reading: ' + str(t1 - t0))
+data = pd.DataFrame()
+for i in range(10):
+    data = data.append(get_data())
+
+print(data.head())
