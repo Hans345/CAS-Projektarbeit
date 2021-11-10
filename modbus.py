@@ -36,14 +36,14 @@ def hex2int(a):
 
 
 ###############################################################################
-def getAdrSpace(startAdr, endAdr, adrOffset):
+def getAdrSpace(startAdr, endArd, adrOffset):
     """
-    :param startAdr: type: string in hex
-    :param endAdr: type: string in hex
-    :param adrOffset: type: string in hex
+    :param startAdr: type: string array in hex
+    :param endArd: type: string array in hex
+    :param adrOffset: type: string array in hex
     :return: type: Adressraum in dezimal
     """
-    integer_input = [hex2int(startAdr), hex2int(endAdr), hex2int(adrOffset)]
+    integer_input = [hex2int(startAdr), hex2int(endArd), hex2int(adrOffset)]
     l = int((integer_input[1] - integer_input[0]) / integer_input[2] + 1)
 
     curr_address = integer_input[0]
@@ -90,12 +90,32 @@ adr = 1
 modBus = initModbus(port,adr)
 
 # calc Register Addresses
-adrSpace = getAdrSpace("5000", "5030", "02")
-print(adrSpace)
+adrSpace1 = getAdrSpace("5000", "5030", "02")
+print("##########")
+print("Addressraum 1:\n" + str(adrSpace1))
+adrSpace2 = getAdrSpace("6006", "600A", "02")
+print("##########")
+print("Addressraum 2:\n" + str(adrSpace2))
+adrSpace3 = getAdrSpace("602A", "602E", "02")
+print("##########")
+print("Addressraum 3:\n" + str(adrSpace3))
+print("##########")
 
 # read Data and Store to pandas Dataframe
-s = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum", "q_L1",
+s1 = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum", "q_L1",
       "q_L2", "q_L3", "s_sum", "s_L1", "s_L2", "s_L3", "pf", "pf_L1", "pf_L2", "pf_L3"])
-data = getDataRow(modBus, adrSpace, s)
-print(data.dtypes)
-print(data)
+s2 = (["eAct_L1", "eAct_L2", "eAct_L3"])
+s3 = (["eReact_L1", "eReact_L2", "eReact_L3"])
+data1 = getDataRow(modBus, adrSpace1, s1)
+print("##########")
+print("Data 1: \n" + str(data1.dtypes))
+print("Data 1: \n" + str(data1))
+data2 = getDataRow(modBus, adrSpace2, s2)
+print("##########")
+print("Data 2: \n" + str(data2.dtypes))
+print("Data 2: \n" + str(data2))
+data3 = getDataRow(modBus, adrSpace2, s3)
+print("##########")
+print("Data 3: \n" + str(data3.dtypes))
+print("Data 3: \n" + str(data3))
+
