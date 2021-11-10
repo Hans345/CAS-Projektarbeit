@@ -1,27 +1,20 @@
-from pathlib import Path
-
-my_dir = Path("./database/")
-my_file = Path("./database/myData.csv")
-max_Size = 400
-
 
 ###############################################################################
-def store_data(data):
+def store_data(data_row, dir_path, dir_file):
     size = 0
-    if my_dir.is_dir():
-        if my_file.is_file():
-            size = my_file.stat().st_size
-            if size < max_Size:  # check Size Database
-                data.to_csv(path_or_buf=my_file, header=False, mode='a')
+    if dir_path.is_dir():
+        if dir_file.is_file():
+            size = dir_file.stat().st_size
+            data_row.to_csv(path_or_buf=dir_file, header=False, mode='a')
         else:
-            data.to_csv(path_or_buf=my_file)
+            data_row.to_csv(path_or_buf=dir_file)
     else:
-        my_dir.mkdir()
-        data.to_csv(path_or_buf=my_file)
+        dir_path.mkdir()
+        data_row.to_csv(path_or_buf=dir_file)
 
     return size
 
 
 ###############################################################################
-def del_database():
-    my_file.unlink()
+def del_database(dir_file):
+    dir_file.unlink()

@@ -1,16 +1,21 @@
-import datetime as dt
-
 import pandas as pd
 
 from modbus import get_data
+from pathlib import Path
 from database import *
 from parameters import *
 
-curr_Size = 0
-
 data = pd.DataFrame()
 dataRow = pd.DataFrame()
-del_database()
+my_dir = Path("./database/")
+my_file = Path("./database/myData.csv")
+curr_Size = 0
+
+# delete old database
+if my_file.is_file():
+    del_database()
+
+# create new database with maxsize
 for i in range(10):
     data = data.append(get_data())
     dataRow = get_data()
