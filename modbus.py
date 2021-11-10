@@ -84,6 +84,17 @@ def getDataRow(instrument, adrSpace, s):
     return df
 
 
+###############################################################################
+def delDataCol(data, s):
+    """
+    :param data: type: Data Frame
+    :param s: type: string
+    :return: type: Data Frame without cols, which named in s
+    """
+    return data.drop(columns=s)
+
+
+
 # init Modbus
 port = '/dev/ttyUSB0'
 adr = 1
@@ -91,15 +102,8 @@ modBus = initModbus(port,adr)
 
 # calc Register Addresses
 adrSpace1 = getAdrSpace("5000", "5030", "02")
-print("##########")
-print("Addressraum 1:\n" + str(adrSpace1))
 adrSpace2 = getAdrSpace("6006", "600A", "02")
-print("##########")
-print("Addressraum 2:\n" + str(adrSpace2))
 adrSpace3 = getAdrSpace("602A", "602E", "02")
-print("##########")
-print("Addressraum 3:\n" + str(adrSpace3))
-print("##########")
 
 # read Data and Store to pandas Dataframe
 s1 = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum", "q_L1",
@@ -109,18 +113,34 @@ s3 = (["eReact_L1", "eReact_L2", "eReact_L3"])
 data1 = getDataRow(modBus, adrSpace1, s1)
 data2 = getDataRow(modBus, adrSpace2, s2)
 data3 = getDataRow(modBus, adrSpace3, s3)
-# print("##########")
-# print("Data 1: \n" + str(data1.dtypes))
-# print("Data 1: \n" + str(data1))
-# print("##########")
-# print("Data 2: \n" + str(data2.dtypes))
-# print("Data 2: \n" + str(data2))
-# print("##########")
-# print("Data 3: \n" + str(data3.dtypes))
-# print("Data 3: \n" + str(data3))
-test = pd.DataFrame([[data1.iloc[0]["V_L3"], data1.iloc[0]["I_L3"], data1.iloc[0]["pf_L3"], data1.iloc[0]["p_L3"],
-                      data2.iloc[0]["eAct_L3"],
-                      data3.iloc[0]["eReact_L3"]]])
-print("Relevant Data: \n" + str(test))
+
+# clear unrelevant Data Cols
+sDel = (["V", "I"])
+data1 = delDataCol(data1, sDel)
+
+# print all
+print("##########")
+print("Addressraum 1:\n" + str(adrSpace1))
+print("##########")
+print("Addressraum 2:\n" + str(adrSpace2))
+print("##########")
+print("Addressraum 3:\n" + str(adrSpace3))
+print("##########")
+print("##########")
+print("Data 1: \n" + str(data1.dtypes))
+print("Data 1: \n" + str(data1))
+print("##########")
+print("Data 2: \n" + str(data2.dtypes))
+print("Data 2: \n" + str(data2))
+print("##########")
+print("Data 3: \n" + str(data3.dtypes))
+print("Data 3: \n" + str(data3))
+
+# test = pd.DataFrame([[data1.iloc[0]["V_L3"], data1.iloc[0]["I_L3"], data1.iloc[0]["pf_L3"], data1.iloc[0]["p_L3"],
+#                       data2.iloc[0]["eAct_L3"],
+#                       data3.iloc[0]["eReact_L3"]]])
+# print("Relevant Data: \n" + str(test))
+
+
 
 
