@@ -17,10 +17,8 @@ def store_data(data):
             data.to_csv(path_or_buf=my_file)
     else:
         my_dir.mkdir()
-        if my_file.is_file():
-            data.to_csv(path_or_buf=my_file, header=False, mode='a')
-        else:
-            data.to_csv(path_or_buf=my_file)
+        data.to_csv(path_or_buf=my_file)
+
     return size
 
 
