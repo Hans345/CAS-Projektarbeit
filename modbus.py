@@ -78,7 +78,7 @@ def get_data_row(instrument, adr_space, s):
         # read data Row
         data = np.array(np.zeros(l), dtype=float)[np.newaxis]  # Zeilenvektor
         for i in range(l):
-            data[0, i] = np.around(instrument.read_float(int(adr_space[i])), 2)
+            data[0, i] = np.around(instrument.read_float(int(adr_space[i])), 3)
         # save to  Data Frame
         df = pd.DataFrame(data, columns=s)
     else:
