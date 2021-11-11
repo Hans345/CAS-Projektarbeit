@@ -1,15 +1,9 @@
-import pandas as pd
-
 from modbus import get_data
-from pathlib import Path
 from database import *
 from parameters import *
 
-data = pd.DataFrame()
-dataRow = pd.DataFrame()
-path_csv = Path("./database/myData.csv")
-path_sqlite = Path("./database/myData.sqlite")
-curr_Size = 0
+size_csv = 0
+size_sqlite = 0
 
 # delete old databases
 if path_csv.is_file():
@@ -19,12 +13,13 @@ if path_sqlite.is_file():
 
 # create new database with maxsize
 for i in range(10):
-    if curr_Size < max_Size:
+    if (size_csv < max_Size) or (size_sqlite < max_Size):
         dataRow = get_data()
         data = data.append(dataRow)
-        curr_Size = store_data_csv(dataRow, path_csv)  # store to .csv
+        size_csv = store_data_csv(dataRow, path_csv)  # store to .csv
+        size_sqlite = store_data_sqlite3(dataRow, path_sqlite)  # store to .sqlite
     else:
-        print("Database is full: " + str(curr_Size) + " Bytes")
+        print("Database is full: " + str(size_csv) + " Bytes")
         break
 
 print(data.head())
