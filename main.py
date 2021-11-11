@@ -7,8 +7,8 @@ from parameters import *
 
 data = pd.DataFrame()
 dataRow = pd.DataFrame()
-path_csv = Path("database\myData.csv")
-path_sqlite = Path("database\myData.sqlite")
+path_csv = Path("./database/myData.csv")
+path_sqlite = Path("./database/myData.sqlite")
 curr_Size = 0
 
 # delete old databases
@@ -22,7 +22,7 @@ for i in range(10):
     if curr_Size < max_Size:
         dataRow = get_data()
         data = data.append(dataRow)
-        curr_Size = store_data_csv(dataRow, path_csv) # store to .csv
+        curr_Size = store_data_csv(dataRow, path_csv)  # store to .csv
     else:
         print("Database is full: " + str(curr_Size) + " Bytes")
         break
