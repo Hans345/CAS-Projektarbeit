@@ -3,7 +3,7 @@ from database import *
 from parameters import *
 from start import *
 
-init_display()
+disp = init_display()
 size_csv = 0
 size_sqlite = 0
 
@@ -23,5 +23,7 @@ for i in range(10):
     else:
         print("Database is full: " + str(size_csv) + " Bytes")
         break
+    # Update Display Clock
+    update_clock(disp)
 
 print(data.head())

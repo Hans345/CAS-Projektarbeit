@@ -40,3 +40,12 @@ def init_display():
 
     print(ip)
     print(zeit)
+
+    return draw
+
+
+###############################################################################
+def update_clock(disp):
+    zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    font = ImageFont.load_default()  # Load default font.
+    disp.text((0, -2 + 8), zeit, font=font, fill=255)
