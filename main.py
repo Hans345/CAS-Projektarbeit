@@ -7,22 +7,24 @@ from parameters import *
 
 data = pd.DataFrame()
 dataRow = pd.DataFrame()
-my_dir = Path("./database/")
-my_file = Path("./database/myData.csv")
+path_csv = Path("database\myData.csv")
+path_sqlite = Path("database\myData.sqlite")
 curr_Size = 0
 
-# delete old database
-if my_file.is_file():
-    del_database(my_file)
+# delete old databases
+if path_csv.is_file():
+    del_database(path_csv)
+if path_sqlite.is_file():
+    del_database(path_sqlite)
 
 # create new database with maxsize
 for i in range(10):
     if curr_Size < max_Size:
         dataRow = get_data()
         data = data.append(dataRow)
-        curr_Size = store_data(dataRow, my_dir, my_file)
+        curr_Size = store_data_csv(dataRow, path_csv) # store to .csv
     else:
-        print("Database is full: " + str(curr_Size) + "Bytes")
+        print("Database is full: " + str(curr_Size) + " Bytes")
         break
 
 print(data.head())
