@@ -1,7 +1,9 @@
 from modbus import get_data
 from database import *
 from parameters import *
+from start import *
 
+init_display()
 size_csv = 0
 size_sqlite = 0
 
