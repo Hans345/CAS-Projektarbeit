@@ -50,10 +50,10 @@ class PiOLED:
         self.disp.image(self.image)
         self.disp.show()
 
-        # Draw new text
-        self.draw.text((0, -2 + 25), s, font=self.font, fill=255)
-        self.disp.image(self.image)
-        self.disp.show()
+        # # Draw new text
+        # self.draw.text((0, -2 + 25), s, font=self.font, fill=255)
+        # self.disp.image(self.image)
+        # self.disp.show()
 
         # Print
         print(self.ip)
