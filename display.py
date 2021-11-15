@@ -52,7 +52,7 @@ class PiOLED:
         self.draw.text((0, -2 + 0), 'IP: %s' % self.ip, font=self.font, fill=255)
         self.draw.text((0, -2 + 8), self.zeit, font=self.font, fill=255)
         self.draw.text((0, -2 + 16), '', font=self.font, fill=255)
-        self.draw.text((0, -2 + 32), s, font=self.font, fill=255)
+        self.draw.text((0, -2 + 27), s, font=self.font, fill=255)
         self.disp.image(self.image)
         self.disp.show()
 
