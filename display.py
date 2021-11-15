@@ -50,14 +50,17 @@ class PiOLED:
         self.disp.image(self.image)
         self.disp.show()
 
-        # # Draw new text
-        # self.draw.text((0, -2 + 25), s, font=self.font, fill=255)
-        # self.disp.image(self.image)
-        # self.disp.show()
+        # sleep
+        time.sleep(1)
+
+        # Draw new text
+        self.draw.text((0, -2 + 25), s, font=self.font, fill=255)
+        self.disp.image(self.image)
+        self.disp.show()
+
+        # sleep
+        time.sleep(1)
 
         # Print
         print(self.ip)
         print(self.zeit)
-
-        # sleep
-        time.sleep(1)
