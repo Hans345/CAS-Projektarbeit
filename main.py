@@ -1,7 +1,7 @@
 from modbus import get_data
 from database import *
 from parameters import *
-from start import *
+from display import PiOLED
 
 size_csv = 0
 size_sqlite = 0
@@ -11,6 +11,11 @@ if path_csv.is_file():
     del_database(path_csv)
 if path_sqlite.is_file():
     del_database(path_sqlite)
+
+# Display
+miniDisplay = PiOLED()
+s = "es klappt !"
+miniDisplay.draw(s)
 
 # create new database with maxsize
 for i in range(10):
