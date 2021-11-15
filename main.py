@@ -1,7 +1,7 @@
 from modbus import get_data
 from database import *
 from parameters import *
-from display import PiOLED
+from display import *
 
 size_csv = 0
 size_sqlite = 0
