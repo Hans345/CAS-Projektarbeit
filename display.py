@@ -45,21 +45,14 @@ class PiOLED:
         time.sleep(1)
 
     def set_string(self, s):
-        # Clear old text
-        self.draw.text((0, -2 + 25), '', font=self.font, fill=255)
-        self.disp.image(self.image)
+        # Clear display.
+        self.disp.fill(0)
         self.disp.show()
-
-        # sleep
-        time.sleep(1)
 
         # Draw new text
         self.draw.text((0, -2 + 25), s, font=self.font, fill=255)
         self.disp.image(self.image)
         self.disp.show()
-
-        # sleep
-        time.sleep(1)
 
         # Print
         print(self.ip)
