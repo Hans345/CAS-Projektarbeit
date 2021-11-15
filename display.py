@@ -46,10 +46,7 @@ class PiOLED:
 
     def set_string(self, s):
         # Clear display.
-        self.disp.fill(0)
-        self.draw.text((0, -2 + 25), '', font=self.font, fill=255)
-        self.disp.image(self.image)
-        self.disp.show()
+        self.draw.rectangle((0, 0, 128, 32), outline=0, fill=0)
 
         # Draw new text
         self.draw.text((0, -2 + 25), s, font=self.font, fill=255)
