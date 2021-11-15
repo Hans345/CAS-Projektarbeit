@@ -15,8 +15,7 @@ if path_sqlite.is_file():
 # Display
 miniDisplay = PiOLED()
 s = "es klappt !"
-miniDisplay.draw(s)
-
+miniDisplay.set_string(s)
 # create new database with maxsize
 for i in range(10):
     if (size_csv < max_Size) or (size_sqlite < max_Size):
