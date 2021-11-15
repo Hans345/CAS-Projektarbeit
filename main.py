@@ -26,7 +26,7 @@ for i in range(10):
         print("Database is full: " + str(size_csv) + " Bytes")
         break
     if i < 1:
-        miniDisplay.set_string("Messung läuft")
-miniDisplay.set_string("Messung gestoppt")
+        miniDisplay.set_string("Messung läuft !")
+miniDisplay.set_string("Messung gestoppt !")
 
 print(data.head())
