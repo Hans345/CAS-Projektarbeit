@@ -15,7 +15,6 @@ if path_sqlite.is_file():
 # Display
 miniDisplay = PiOLED()
 
-miniDisplay.set_string("Messung läuft")
 # create new database with maxsize
 for i in range(10):
     if (size_csv < max_Size) or (size_sqlite < max_Size):
@@ -26,6 +25,8 @@ for i in range(10):
     else:
         print("Database is full: " + str(size_csv) + " Bytes")
         break
+    if i < 1:
+        miniDisplay.set_string("Messung läuft")
 miniDisplay.set_string("Messung gestoppt")
 
 print(data.head())
