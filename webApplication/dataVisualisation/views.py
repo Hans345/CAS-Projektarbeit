@@ -8,7 +8,9 @@ from . import display
 #####################################################################################
 from .database import del_database, store_data_csv, store_data_sqlite3
 from .modbus import get_data
-from .parameters import path_csv, path_sqlite, max_Size, data, dataRow
+from .parameters import path_csv, path_sqlite, max_Size
+
+import pandas as pd
 
 
 def test(request):
@@ -19,6 +21,10 @@ def test(request):
     # Display
     size_csv = 0
     size_sqlite = 0
+
+    # modbus Param
+    data = pd.DataFrame()
+    dataRow = pd.DataFrame()
 
     # delete old databases
     if path_csv.is_file():
