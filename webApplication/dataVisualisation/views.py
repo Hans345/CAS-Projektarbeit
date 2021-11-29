@@ -4,16 +4,15 @@ from . import modbus
 from . import database
 from . import parameters
 from . import display
+import pandas as pd
 
 #####################################################################################
 from .database import del_database, store_data_csv, store_data_sqlite3
 from .modbus import get_data
 from .parameters import path_csv, path_sqlite, max_Size
 
-import pandas as pd
 
-
-def test(request):
+def update_database(request):
     """
     :param request: Anfrage
     :return:
@@ -47,7 +46,7 @@ def test(request):
             break
         if i < 1:
             miniDisplay.set_string("Messung läuft !")
-    miniDisplay.set_string("Init Done !")
+    miniDisplay.set_string("Messung abgeschlossen !")
 
     print(data.head())
 
