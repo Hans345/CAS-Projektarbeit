@@ -7,8 +7,9 @@ from . import display
 
 
 #####################################################################################
-from .database import del_database
-from .parameters import path_csv, path_sqlite
+from .database import *
+from .modbus import *
+from .parameters import *
 
 
 def test(request):
