@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,12 @@ SECRET_KEY = 'django-insecure-v!5v+qs!j5s^ie6w2&v-=e@wu(p12ed_vwi))y-yymmil!zs6i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Ermitteln der IP-Adresse meines Rechners
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(('1.1.1.1', 1))  # fiktiver Internetzugriff
+ip = s.getsockname()[0]  # ermittle IP-Adresse
+
+ALLOWED_HOSTS = ['127.0.0.1', ip]
 
 
 # Application definition
@@ -37,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webApplication',
 ]
 
 MIDDLEWARE = [
