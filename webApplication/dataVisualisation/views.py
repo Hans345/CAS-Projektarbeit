@@ -46,7 +46,7 @@ def update_database(request):
             break
         if i < 1:
             miniDisplay.set_string("Messung läuft !")
-    miniDisplay.set_string("Messung abgeschlossen !")
+    miniDisplay.set_string("Messung fertig!")
 
     print(data.head())
 
