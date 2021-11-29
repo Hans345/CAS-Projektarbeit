@@ -333,3 +333,7 @@
 12:56:31||myData.csv|64|2|1638190582|c2435e5585a2836a8ed1cd2e407830ab|1254|4193389039oc641cdd42e0|3|Server replied "404 Not Found" to "GET https://drive.switch.ch/remote.php/dav/files/raphael.meier@hsr.ch/database/myData.csv" (Sabre\DAV\Exception\NotFound)|404|1245|1638186002|a46cf696-f3a8-4487-97f5-2f39ded93c0f|
 12:56:31||myData.sqlite|64|2|1638190582|a1c2f29d957c806ed3cab2d6c83244a4|12288|4193389044oc641cdd42e0|4||200|12288|1638186002|012c4b98-5751-4fea-9678-0c8fe0113196|
 #=#=#=# Syncrun finished 2021-11-29T12:56:31Z (last step: 403 msec, total: 726 msec)
+#=#=#=# Syncrun started 2021-11-29T14:56:36Z
+#=#=#=#=# Propagation starts 2021-11-29T14:56:36Z (last step: 243 msec, total: 243 msec)
+14:56:36||myData.csv|64|2|1638190582|c2435e5585a2836a8ed1cd2e407830ab|1254|4193389039oc641cdd42e0|4||200|1245|1638186002|1fab10cd-61d9-42aa-8df9-de3530625b88|
+#=#=#=# Syncrun finished 2021-11-29T14:56:36Z (last step: 322 msec, total: 565 msec)
