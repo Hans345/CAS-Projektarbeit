@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from modbus import get_data
+# from modbus import get_data
 from database import *
 from parameters import *
 from display import *
@@ -16,11 +16,11 @@ def test(request):
     size_csv = 0
     size_sqlite = 0
 
-    # delete old databases
-    if path_csv.is_file():
-        del_database(path_csv)
-    if path_sqlite.is_file():
-        del_database(path_sqlite)
+    # # delete old databases
+    # if path_csv.is_file():
+    #     del_database(path_csv)
+    # if path_sqlite.is_file():
+    #     del_database(path_sqlite)
 
     # Display
     miniDisplay = PiOLED()
