@@ -37,7 +37,7 @@ def test(request):
     #         break
     #     if i < 1:
     #         miniDisplay.set_string("Messung läuft !")
-    # miniDisplay.set_string("Messung gestoppt !")
+    miniDisplay.set_string("Init Done !")
     #
     # print(data.head())
 
