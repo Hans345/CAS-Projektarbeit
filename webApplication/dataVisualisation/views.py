@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# from modbus import get_data
-from database import *
-from parameters import *
-from display import *
+# from . import modbus
+# from database import *
+# from parameters import *
+from . import display
 
 
 #####################################################################################
@@ -23,7 +23,7 @@ def test(request):
     #     del_database(path_sqlite)
 
     # Display
-    miniDisplay = PiOLED()
+    miniDisplay = display.PiOLED()
 
     # # create new database with maxsize
     # for i in range(10):
