@@ -1,0 +1,3 @@
+#! /bin/sh
+cd /home/pi/CAS/CAS-Projektarbeit
+python3 main.py

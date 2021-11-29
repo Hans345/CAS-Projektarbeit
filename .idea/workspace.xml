@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f949cbc-2a0d-45c3-9d20-87afa93ff7c8" name="Changes" comment="django" />
+    <list default="true" id="3f949cbc-2a0d-45c3-9d20-87afa93ff7c8" name="Changes" comment="django">
+      <change beforePath="$PROJECT_DIR$/webApplication/webApplication/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApplication/webApplication/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webApplication/webApplication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/webApplication/webApplication/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/webApplication" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DjangoTestsConfigurationType">
@@ -192,6 +195,7 @@
       <workItem from="1638189264591" duration="158000" />
       <workItem from="1638189437201" duration="390000" />
       <workItem from="1638189994514" duration="691000" />
+      <workItem from="1638191883702" duration="86000" />
     </task>
     <task id="LOCAL-00001" summary="django">
       <created>1638188042892</created>
