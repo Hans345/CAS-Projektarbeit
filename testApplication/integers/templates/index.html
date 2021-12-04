@@ -25,26 +25,12 @@
             <th scope="col" rowspan="2">Blindenergie in [kvarh]</th>
 		</tr>
 	</thead>
-	<tfoot>
-		<tr>
-			<th scope="row">Summe/Mittelwert</th>
-			<td>26,2%</td>
-			<td>29,9%</td>
-			<td>0,6%</td>
-            <td>0.5%</td>
-			<td>1,0%</td>
-			<td>7,8%</td>
-			<td>1.1%</td>
-			<td>2,4%</td>
-			<td>20,2%</td>
-		</tr>
-	</tfoot>
 	<tbody>
 		<tr>
 			<th scope="row">L1</th>
 			<td id="VL1">{{ text }}</td>
-			<td>30,4%</td>
-			<td>0,9%</td>
+			<td id="IL1">{{ text }}</td>
+			<td id="PF1">{{ text }}</td>
             <td>-</td>
 			<td>1,3%</td>
 			<td>8,3%</td>
@@ -55,8 +41,8 @@
 		<tr>
 			<th scope="row">L2</th>
 			<td id="VL2">{{ text }}</td>
-			<td>29,6%</td>
-			<td>0,7%</td>
+			<td id="IL2">{{ text }}</td>
+			<td id="PF2">{{ text }}</td>
             <td>-</td>
 			<td>1,2%</td>
 			<td>7,5%</td>
@@ -67,8 +53,20 @@
 		<tr>
 			<th scope="row">L3</th>
 			<td id="VL3">{{ text }}</td>
-			<td>29,8%</td>
-			<td>0,5%</td>
+			<td id="IL3">{{ text }}</td>
+			<td id="PF3">{{ text }}</td>
+            <td>-</td>
+			<td>1,2%</td>
+			<td>7,5%</td>
+			<td>1,0%</td>
+			<td>2,2%</td>
+			<td>22,0%</td>
+		</tr>
+    		<tr>
+			<th scope="row">Summe/Mittelwert</th>
+			<td id="VMean">{{ text }}</td>
+			<td id="IMean">{{ text }}</td>
+			<td id="PFMean">{{ text }}</td>
             <td>-</td>
 			<td>1,2%</td>
 			<td>7,5%</td>
@@ -85,9 +83,22 @@
         socket.onmessage = function (event) {
             var data = JSON.parse(event.data);
             console.log(data);
+            <!-- Phase 1 -->
             document.querySelector('#VL1').innerHTML = data.VL1;
+            document.querySelector('#IL1').innerHTML = data.IL1;
+            document.querySelector('#PF1').innerHTML = data.PF1;
+            <!-- Phase 2 -->
             document.querySelector('#VL2').innerHTML = data.VL2;
+            document.querySelector('#IL2').innerHTML = data.IL2;
+            document.querySelector('#PF2').innerHTML = data.PF2;
+            <!-- Phase 3 -->
             document.querySelector('#VL3').innerHTML = data.VL3;
+            document.querySelector('#IL3').innerHTML = data.IL3;
+            document.querySelector('#PF3').innerHTML = data.PF3;
+            <!-- Sum/Mean -->
+            document.querySelector('#VMean').innerHTML = data.VMean;
+            document.querySelector('#IMean').innerHTML = data.IMean;
+            document.querySelector('#PFMean').innerHTML = data.PFMean;
         }
     </script>
 </div>
