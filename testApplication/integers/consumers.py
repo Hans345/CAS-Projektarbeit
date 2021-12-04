@@ -30,7 +30,6 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
         # Init Display
         self.miniDisplay = PiOLED()
         self.miniDisplay.set_string("Start Log Data!")
-        self.send(json.dumps({'DataLog': 'Daten werden gespeichert!'}))
 
     def connect(self):
         self.accept()
@@ -48,7 +47,6 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                 if i == 0:
                     print("Database is full: " + str(self.size_csv) + " Bytes")
                     self.miniDisplay.set_string("Stop Log Data!")
-                    self.send(json.dumps({'DataLog': 'Datenspeicherung angehalten, maximale Filegrösse erreicht!'}))
                     i = 1
             # update webpage
             self.send(json.dumps({'VL1': float(self.dataRow["V_L1"]),
