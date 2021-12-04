@@ -1,0 +1,6 @@
+# timestamp | duration | file | instruction | dir | modtime | etag | size | fileId | status | errorString | http result code | other size | other modtime | X-Request-ID
+#=#=#=# Syncrun started 2021-12-04T13:58:28Z
+#=#=#=#=# Propagation starts 2021-12-04T13:58:28Z (last step: 184 msec, total: 184 msec)
+||myData.csv|8|2|1638198116|c9638544b61ab91430b8c1e3b00d69ec|1254|4193389039oc641cdd42e0|4||0|0|0||
+||myData.sqlite|8|2|1638198116|3ecaea1c03f593ebef3e251f364b09e0|12288|4193389044oc641cdd42e0|4||0|0|0||
+#=#=#=# Syncrun finished 2021-12-04T13:58:28Z (last step: 25 msec, total: 209 msec)
