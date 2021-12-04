@@ -27,8 +27,8 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
 
         # create new database with maxsize
         for i in range(10):
+            dataRow = get_data()
             if (size_csv < max_Size) or (size_sqlite < max_Size):
-                dataRow = get_data()
                 size_csv = store_data_csv(dataRow, path_csv)  # store to .csv
                 size_sqlite = store_data_sqlite3(dataRow, path_sqlite)  # store to .sqlite
             else:
