@@ -33,6 +33,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
     def connect(self):
         self.accept()
 
+        i = 0
         # create new database with maxsize
         while 1:
             # get data from PRO380-Mod
@@ -42,8 +43,10 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                 self.size_csv = store_data_csv(self.dataRow, self.path_csv)  # store to .csv
                 self.size_sqlite = store_data_sqlite3(self.dataRow, self.path_sqlite)  # store to .sqlite
             else:
-                print("Database is full: " + str(self.size_csv) + " Bytes")
-                self.miniDisplay.set_string("Stop Log Data!")
+                if i == 0:
+                    print("Database is full: " + str(self.size_csv) + " Bytes")
+                    self.miniDisplay.set_string("Stop Log Data!")
+                    i = 1
             # update webpage
             self.send(json.dumps({'VL1': float(self.dataRow["V_L1"]),
                                   'VL2': float(self.dataRow["V_L2"]),
