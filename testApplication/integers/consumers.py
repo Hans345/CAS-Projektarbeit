@@ -2,6 +2,7 @@ import json
 from channels.generic.websocket import WebsocketConsumer
 from pathlib import Path
 import pandas as pd
+import numpy as np
 
 from .database import del_database, store_data_csv, store_data_sqlite3
 from .display import PiOLED
@@ -51,13 +52,13 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
             self.send(json.dumps({'VL1': float(self.dataRow["V_L1"]),
                                   'VL2': float(self.dataRow["V_L2"]),
                                   'VL3': float(self.dataRow["V_L3"]),
-                                  'VMean': (float(self.dataRow["V_L1"]) + float(self.dataRow["V_L2"]) + float(
-                                      self.dataRow["V_L3"])) / 3,
+                                  'VMean': np.round((float(self.dataRow["V_L1"]) + float(self.dataRow["V_L2"]) + float(
+                                      self.dataRow["V_L3"])) / 3, decimals=3),
                                   'IL1': float(self.dataRow["I_L1"]),
                                   'IL2': float(self.dataRow["I_L2"]),
                                   'IL3': float(self.dataRow["I_L3"]),
-                                  'IMean': (float(self.dataRow["I_L1"]) + float(self.dataRow["I_L2"]) + float(
-                                      self.dataRow["I_L3"])) / 3,
+                                  'IMean': np.round((float(self.dataRow["I_L1"]) + float(self.dataRow["I_L2"]) + float(
+                                      self.dataRow["I_L3"])) / 3, decimals=3),
                                   'PF1': float(self.dataRow["pf_L1"]),
                                   'PF2': float(self.dataRow["pf_L2"]),
                                   'PF3': float(self.dataRow["pf_L3"]),
