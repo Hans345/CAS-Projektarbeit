@@ -4,9 +4,9 @@ from random import randint
 from channels.generic.websocket import WebsocketConsumer
 from pathlib import Path
 import pandas as pd
-from integers.database import del_database, store_data_csv, store_data_sqlite3
-from modbus import get_data
-from display import *
+
+from .database import del_database
+from .display import PiOLED
 
 
 class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
