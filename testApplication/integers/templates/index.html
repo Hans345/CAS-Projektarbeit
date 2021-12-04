@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge"> -->
+    <!-- CSS only -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Real Time Application with Django Channels</title> -->
+</head>
+<body>
+<!--- Data Table -->
+<h1>Real-Time Daten Tabelle</h1>
+<table>
+	<caption>Energie Daten PRO380-Mod</caption>
+	<thead>
+		<tr>
+			<td rowspan="2"></td>
+			<th scope="col" rowspan="2">Spannung in [V]</th>
+			<th scope="col" rowspan="2">Strom in [A]</th>
+			<th scope="col" rowspan="2">Leistungsfaktor</th>
+            <th scope="col" rowspan="2">Frequenz in [Hz]</th>
+			<th scope="col" rowspan="2">Wirkleistung in [kW]</th>
+			<th scope="col" rowspan="2">Blindleistung in [kvar]</th>
+			<th scope="col" rowspan="2">Scheinleistung in [kVA]</th>
+            <th scope="col" rowspan="2">Wirkenergie in [kWh]</th>
+            <th scope="col" rowspan="2">Blindenergie in [kvarh]</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th scope="row">Summe/Mittelwert</th>
+			<td>26,2%</td>
+			<td>29,9%</td>
+			<td>0,6%</td>
+            <td>0.5%</td>
+			<td>1,0%</td>
+			<td>7,8%</td>
+			<td>1.1%</td>
+			<td>2,4%</td>
+			<td>20,2%</td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr>
+			<th scope="row">L1</th>
+			<td id="VL1">{{ text }}</td>
+			<td>30,4%</td>
+			<td>0,9%</td>
+            <td>-</td>
+			<td>1,3%</td>
+			<td>8,3%</td>
+			<td>0,1%</td>
+			<td>1,5%</td>
+			<td>22,6%</td>
+		</tr>
+		<tr>
+			<th scope="row">L2</th>
+			<td id="VL2">{{ text }}</td>
+			<td>29,6%</td>
+			<td>0,7%</td>
+            <td>-</td>
+			<td>1,2%</td>
+			<td>7,5%</td>
+			<td>0,8%</td>
+			<td>1,6%</td>
+			<td>22,8%</td>
+		</tr>
+		<tr>
+			<th scope="row">L3</th>
+			<td>25,9%</td>
+			<td>29,8%</td>
+			<td>0,5%</td>
+            <td>-</td>
+			<td>1,2%</td>
+			<td>7,5%</td>
+			<td>1,0%</td>
+			<td>2,2%</td>
+			<td>22,0%</td>
+		</tr>
+	</tbody>
+</table>
+<p>Datenblatt PRO380-Mod: <a href="https://ineprometering.com/pro380/">www.ineprometering.de</a>
+</p>
+    <script>
+        var socket = new WebSocket('ws://localhost:8000/ws/some_url/');
+        socket.onmessage = function (event) {
+            var data = JSON.parse(event.data);
+            console.log(data);
+            document.querySelector('#VL1').innerHTML = data.VL1;
+            document.querySelector('#VL2').innerHTML = data.VL2;
+        }
+    </script>
+</div>
+</body>
+</html>

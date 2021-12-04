@@ -1,0 +1,66 @@
+table {
+	border-collapse: separate;
+	border-spacing: .2em;
+	margin-left: 2em;
+	box-shadow: 0 0 .1em #666;
+	position: relative;
+	z-index: 1;
+}
+
+th,
+td {
+	padding: .2em .5em;
+	border-radius: .1em;
+}
+
+thead th {
+	background-color: #ffebe6;
+	color: #c32e04;
+}
+
+td {
+	font-style: italic;
+	text-align: right;
+	box-shadow: inset 1px 3px 5px -3px rgba(0, 0, 0, 0.5);
+}
+
+tbody tr:nth-child(even) td {
+	background-color: #e4ebf2;
+	color: #000;
+}
+
+td:empty {
+	box-shadow: none;
+	background-color: none;
+}
+
+th[scope=row] {
+	color: #c32e04;
+	text-align: right;
+	background-color: transparent;
+}
+
+caption {
+	color: white;
+	background: #c32e04;
+	font-size: 1.5em;
+	box-shadow: .1em .1em .1em 0 hsl(0, 0%, 50%);
+	padding: .2em .2em .2em 2em;
+	width: 15em;
+	margin-left: -.6em;
+	position: relative;
+}
+
+caption::before {
+	content: "";
+	position: absolute;
+	display: block;
+	height: 0;
+	width: 0;
+	top: 1em;
+	left: -.6em;
+	border-style: solid;
+	border-width: .6em;
+	border-color: transparent hsl(13, 96%, 35%) transparent transparent;
+	z-index: -1;
+}
