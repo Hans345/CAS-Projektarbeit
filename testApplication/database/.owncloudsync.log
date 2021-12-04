@@ -19,3 +19,29 @@
 #=#=#=#=# Propagation starts 2021-12-04T16:12:25Z (last step: 274 msec, total: 274 msec)
 ||myData.sqlite-journal|8|2|1638634045|0dc47cacf0e644d04cc789d694242c33|12824|4218251324oc641cdd42e0|4||0|0|0||
 #=#=#=# Syncrun finished 2021-12-04T16:12:25Z (last step: 28 msec, total: 303 msec)
+#=#=#=# Syncrun started 2021-12-04T16:20:19Z
+#=#=#=#=# Propagation starts 2021-12-04T16:20:19Z (last step: 363 msec, total: 363 msec)
+16:20:12||myData.sqlite-journal|2|1|1638634045|0dc47cacf0e644d04cc789d694242c33|12824|4218251324oc641cdd42e0|4||204|12824|1638634045|4fac56c8-dffd-426a-a99d-7e4b65215143|
+16:20:12||myData.sqlite|64|1|1638634817|93857b2644dc89ee77f40a856151a1d7|69632|4218169134oc641cdd42e0|4||204|12288|1638632478|ab231eec-08dd-4fe7-a4d9-b4b1597c365d|
+#=#=#=# Syncrun finished 2021-12-04T16:20:20Z (last step: 915 msec, total: 1279 msec)
+#=#=#=# Syncrun started 2021-12-04T16:20:55Z
+#=#=#=#=# Propagation starts 2021-12-04T16:20:55Z (last step: 198 msec, total: 198 msec)
+#=#=#=# Syncrun finished 2021-12-04T16:20:55Z (last step: 8 msec, total: 206 msec)
+#=#=#=# Syncrun started 2021-12-04T16:34:55Z
+#=#=#=#=# Propagation starts 2021-12-04T16:34:55Z (last step: 289 msec, total: 289 msec)
+16:34:48||myData.sqlite|64|2|1638635658|86653ca33580f7e666ce803652818fa2|188416|4218169134oc641cdd42e0|4||200|69632|1638634817|892919e6-5a61-427c-b49c-617c21b74ec9|
+#=#=#=# Syncrun finished 2021-12-04T16:34:56Z (last step: 318 msec, total: 607 msec)
+#=#=#=# Syncrun started 2021-12-04T16:36:25Z
+#=#=#=#=# Propagation starts 2021-12-04T16:36:25Z (last step: 305 msec, total: 305 msec)
+16:36:18||myData.csv|64|2|1638635762|326200afbddb5aac20717a853857a414|1588|4218297729oc641cdd42e0|4||200|1249|1638632478|83f27bb6-4b3b-4926-bf07-72b95e40e9e7|
+16:36:18||myData.sqlite|64|2|1638635762|9d92db212653dc64db1289b574ca7011|12288|4218297719oc641cdd42e0|4||200|188416|1638635658|d5fd2997-5274-459d-8a05-65d144c9ae2a|
+#=#=#=# Syncrun finished 2021-12-04T16:36:26Z (last step: 312 msec, total: 617 msec)
+#=#=#=# Syncrun started 2021-12-04T16:42:55Z
+#=#=#=#=# Propagation starts 2021-12-04T16:42:55Z (last step: 381 msec, total: 381 msec)
+16:42:48||myData.csv|64|2|1638635992|84d401cb43aa14adc095806d3831c7e6|20480|4218297729oc641cdd42e0|4||200|1588|1638635762|7b2eb935-7f70-40af-bec4-1d88229e0688|
+16:42:48||myData.sqlite|64|2|1638635992|0464453c24da1fa3fec7f74bf09c7f9d|45056|4218297719oc641cdd42e0|4||200|12288|1638635762|9a0b2f87-dfa2-41de-b989-5e7f24897faa|
+#=#=#=# Syncrun finished 2021-12-04T16:42:56Z (last step: 233 msec, total: 614 msec)
+#=#=#=# Syncrun started 2021-12-04T16:46:25Z
+#=#=#=#=# Propagation starts 2021-12-04T16:46:25Z (last step: 292 msec, total: 292 msec)
+16:46:18||myData.sqlite|64|2|1638636362|7cc9c6bda00e389d271a19fe65ed4970|172032|4218297719oc641cdd42e0|4||200|45056|1638635992|7c29bab8-57af-464a-a6bb-70084524d836|
+#=#=#=# Syncrun finished 2021-12-04T16:46:26Z (last step: 419 msec, total: 711 msec)
