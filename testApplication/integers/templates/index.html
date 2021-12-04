@@ -66,7 +66,7 @@
 		</tr>
 		<tr>
 			<th scope="row">L3</th>
-			<td>25,9%</td>
+			<td id="VL3">{{ text }}</td>
 			<td>29,8%</td>
 			<td>0,5%</td>
             <td>-</td>
@@ -87,6 +87,7 @@
             console.log(data);
             document.querySelector('#VL1').innerHTML = data.VL1;
             document.querySelector('#VL2').innerHTML = data.VL2;
+            document.querySelector('#VL3').innerHTML = data.VL3;
         }
     </script>
 </div>

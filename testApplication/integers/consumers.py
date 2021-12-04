@@ -47,7 +47,9 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                 self.miniDisplay.set_string("Messung läuft !")
             # send data
             self.send(json.dumps({'VL1': int(self.dataRow["V_L1"]),
-                              'VL2': randint(1, 10)}))
+                                  'VL2': int(self.dataRow["V_L2"]),
+                                  'VL3': int(self.dataRow["V_L3"]),
+                                  }))
         self.miniDisplay.set_string("Messung gestoppt !")
 
         # print
