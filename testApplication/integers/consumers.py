@@ -15,7 +15,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
         self.size_sqlite = 0
         self.size_csv = 0
         # database Param
-        self.max_Size = 1000  # max Size (Byte)
+        self.max_Size = 1000000  # max Size (Byte)
         self.path_csv = Path("./database/myData.csv")
         self.path_sqlite = Path("./database/myData.sqlite")
         # modbus Param
@@ -30,6 +30,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
         # Init Display
         self.miniDisplay = PiOLED()
         self.miniDisplay.set_string("Start Log Data!")
+        self.send(json.dumps({'DataLog': 'Daten werden gespeichert!'}))
 
     def connect(self):
         self.accept()
@@ -47,6 +48,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                 if i == 0:
                     print("Database is full: " + str(self.size_csv) + " Bytes")
                     self.miniDisplay.set_string("Stop Log Data!")
+                    self.send(json.dumps({'DataLog': 'Datenspeicherung angehalten, maximale Filegrösse erreicht!'}))
                     i = 1
             # update webpage
             self.send(json.dumps({'VL1': float(self.dataRow["V_L1"]),

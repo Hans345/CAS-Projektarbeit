@@ -74,6 +74,11 @@
 			<td id="eASum">{{ text }}</td>
 			<td id="eRSum">{{ text }}</td>
 		</tr>
+        </tr>
+    		<tr>
+			<th scope="colgroup" colspan="9">Status</th>
+			<td id="DataLog">{{ text }}</td>
+		</tr>
 	</tbody>
 </table>
 <p>Datenblatt PRO380-Mod: <a href="https://ineprometering.com/pro380/">www.ineprometering.de</a>
@@ -113,12 +118,14 @@
             document.querySelector('#VMean').innerHTML = data.VMean;
             document.querySelector('#IMean').innerHTML = data.IMean;
             document.querySelector('#PFMean').innerHTML = data.PFMean;
-             document.querySelector('#freq').innerHTML = data.freq;
+            document.querySelector('#freq').innerHTML = data.freq;
             document.querySelector('#pSum').innerHTML = data.pSum;
             document.querySelector('#qSum').innerHTML = data.qSum;
             document.querySelector('#sSum').innerHTML = data.sSum;
             document.querySelector('#eASum').innerHTML = data.eASum;
             document.querySelector('#eRSum').innerHTML = data.eRSum;
+            <!-- Status-->
+            document.querySelector('#DataLog').innerHTML = data.DataLog;
         }
     </script>
 </div>
