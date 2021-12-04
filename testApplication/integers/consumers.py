@@ -5,8 +5,9 @@ from channels.generic.websocket import WebsocketConsumer
 from pathlib import Path
 import pandas as pd
 
-from .database import del_database
+from .database import del_database, store_data_csv, store_data_sqlite3
 from .display import PiOLED
+from .modbus import get_data
 
 
 class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
@@ -33,24 +34,21 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
     def connect(self):
         self.accept()
 
-        # # create new database with maxsize
-        # for i in range(10):
-        #     self.dataRow = get_data()
-        #     if (self.size_csv < self.max_Size) or (self.size_sqlite < self.max_Size):
-        #         self.size_csv = store_data_csv(self.dataRow, self.path_csv)  # store to .csv
-        #         self.size_sqlite = store_data_sqlite3(self.dataRow, self.path_sqlite)  # store to .sqlite
-        #     else:
-        #         print("Database is full: " + str(self.size_csv) + " Bytes")
-        #         break
-        #     if i < 1:
-        #         self.miniDisplay.set_string("Messung läuft !")
-        # self.miniDisplay.set_string("Messung gestoppt !")
-
-        # send data
-        for i in range(1000):
-            self.send(json.dumps({'VL1': randint(1, 100),
+        # create new database with maxsize
+        for i in range(10):
+            self.dataRow = get_data()
+            if (self.size_csv < self.max_Size) or (self.size_sqlite < self.max_Size):
+                self.size_csv = store_data_csv(self.dataRow, self.path_csv)  # store to .csv
+                self.size_sqlite = store_data_sqlite3(self.dataRow, self.path_sqlite)  # store to .sqlite
+            else:
+                print("Database is full: " + str(self.size_csv) + " Bytes")
+                break
+            if i < 1:
+                self.miniDisplay.set_string("Messung läuft !")
+            # send data
+            self.send(json.dumps({'VL1': int(self.dataRow["V_L1"]),
                               'VL2': randint(1, 10)}))
-            time.sleep(1)
+        self.miniDisplay.set_string("Messung gestoppt !")
 
-        # # print
-        # print(self.dataRow)
+        # print
+        print(self.dataRow)
