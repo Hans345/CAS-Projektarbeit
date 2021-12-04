@@ -1,6 +1,4 @@
 import json
-import time
-from random import randint
 from channels.generic.websocket import WebsocketConsumer
 from pathlib import Path
 import pandas as pd
@@ -30,27 +28,25 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
 
         # Init Display
         self.miniDisplay = PiOLED()
+        self.miniDisplay.set_string("Start Log Data!")
 
     def connect(self):
         self.accept()
 
         # create new database with maxsize
-        for i in range(10):
+        while 1:
+            # get data from PRO380-Mod
             self.dataRow = get_data()
+            # update database
             if (self.size_csv < self.max_Size) or (self.size_sqlite < self.max_Size):
                 self.size_csv = store_data_csv(self.dataRow, self.path_csv)  # store to .csv
                 self.size_sqlite = store_data_sqlite3(self.dataRow, self.path_sqlite)  # store to .sqlite
             else:
                 print("Database is full: " + str(self.size_csv) + " Bytes")
-                break
-            if i < 1:
-                self.miniDisplay.set_string("Messung läuft !")
-            # send data
+                self.miniDisplay.set_string("Stop Log Data!")
+            # update webpage
             self.send(json.dumps({'VL1': float(self.dataRow["V_L1"]),
                                   'VL2': float(self.dataRow["V_L2"]),
                                   'VL3': float(self.dataRow["V_L3"]),
                                   }))
-        self.miniDisplay.set_string("Messung gestoppt !")
 
-        # print
-        print(self.dataRow)
