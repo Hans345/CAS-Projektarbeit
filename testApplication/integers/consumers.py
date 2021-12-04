@@ -2,34 +2,33 @@ import json
 import time
 from random import randint
 from channels.generic.websocket import WebsocketConsumer
-# from pathlib import Path
-# import pandas as pd
-#
-# from integers.database import del_database, store_data_csv, store_data_sqlite3
-# from modbus import get_data
-# from display import *
+from pathlib import Path
+import pandas as pd
+from integers.database import del_database, store_data_csv, store_data_sqlite3
+from modbus import get_data
+from display import *
 
 
 class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(args, kwargs)
-    #     self.size_sqlite = 0
-    #     self.size_csv = 0
-    #     # database Param
-    #     self.max_Size = 1000  # max Size (Byte)
-    #     self.path_csv = Path("./database/myData.csv")
-    #     self.path_sqlite = Path("./database/myData.sqlite")
-    #     # modbus Param
-    #     self.dataRow = pd.DataFrame()
-    #
-    #     # delete old databases
-    #     if self.path_csv.is_file():
-    #         del_database(self.path_csv)
-    #     if self.path_sqlite.is_file():
-    #         del_database(self.path_sqlite)
-    #
-    #     # Init Display
-    #     self.miniDisplay = PiOLED()
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.size_sqlite = 0
+        self.size_csv = 0
+        # database Param
+        self.max_Size = 1000  # max Size (Byte)
+        self.path_csv = Path("./database/myData.csv")
+        self.path_sqlite = Path("./database/myData.sqlite")
+        # modbus Param
+        self.dataRow = pd.DataFrame()
+
+        # delete old databases
+        if self.path_csv.is_file():
+            del_database(self.path_csv)
+        if self.path_sqlite.is_file():
+            del_database(self.path_sqlite)
+
+        # Init Display
+        self.miniDisplay = PiOLED()
 
     def connect(self):
         self.accept()
