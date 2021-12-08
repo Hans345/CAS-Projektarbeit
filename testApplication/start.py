@@ -66,6 +66,6 @@ disp.image(image)
 disp.show()
 
 # Start Webpage
-subprocess.Popen(['python3', 'manage.py', 'runserver', IP+':8000'])
+subprocess.Popen(['python3', 'manage.py', 'runserver', str(IP)+':8000'])
 
 time.sleep(0.1)
