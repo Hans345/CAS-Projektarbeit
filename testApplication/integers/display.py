@@ -9,7 +9,7 @@ import time
 
 import busio
 from PIL import Image, ImageDraw, ImageFont
-import Adafruit_SSD1306
+import adafruit_ssd1306
 import socket
 
 
@@ -17,7 +17,7 @@ class PiOLED:
     def __init__(self):
         # init Display
         self.i2c = busio.I2C(3, 2)
-        self.disp = Adafruit_SSD1306.SSD1306_I2C(128, 32, self.i2c)
+        self.disp = adafruit_ssd1306.SSD1306_I2C(128, 32, self.i2c)
         self.image = Image.new('1', (128, 32))
         self.draw = ImageDraw.Draw(self.image)
         self.font = ImageFont.load_default()
