@@ -60,7 +60,7 @@ ip = s.getsockname()[0]
 zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # Write four lines of text.
-draw.text((x, top + 0), "IP: " + IP, font=font, fill=255)
+draw.text((x, top + 0), "IP: " + ip, font=font, fill=255)
 draw.text((0, -2 + 8), zeit, font=font, fill=255)
 
 # Display image.
