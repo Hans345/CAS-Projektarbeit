@@ -7,6 +7,7 @@
 # not support PIL/pillow (python imaging library)!
 
 import time
+import socket
 import subprocess
 import datetime as dt
 
@@ -52,8 +53,9 @@ font = ImageFont.load_default()
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
 # Shell scripts for system monitoring from here:
-cmd = "hostname -I | cut -d' ' -f1"
-IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect('1.1.1.1',1)
+ip = s.getsockname()[0]
 # Get Time
 zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -66,6 +68,6 @@ disp.image(image)
 disp.show()
 
 # Start Webpage
-subprocess.Popen(['python3', 'manage.py', 'runserver', str(IP)+':8000'])
+subprocess.Popen(['python3', 'manage.py', 'runserver', ip+':8000'])
 
 time.sleep(0.1)
