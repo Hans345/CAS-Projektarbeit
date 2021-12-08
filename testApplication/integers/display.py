@@ -5,6 +5,7 @@ Python-Code welcher bei Start ausgeführt wird
 """
 # Display
 import time
+import datetime as dt
 import subprocess
 
 from board import SCL, SDA
