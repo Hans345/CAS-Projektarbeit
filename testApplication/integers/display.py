@@ -17,8 +17,8 @@ import adafruit_ssd1306
 class PiOLED:
     def __init__(self):
         # init Display
-        self.i2c = i2c = busio.I2C(SCL, SDA)
-        self.disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
+        self.i2c = busio.I2C(SCL, SDA)
+        self.disp = adafruit_ssd1306.SSD1306_I2C(128, 32, self.i2c)
         self.image = Image.new('1', (128, 32))
         self.draw = ImageDraw.Draw(self.image)
         self.font = ImageFont.load_default()
@@ -28,7 +28,7 @@ class PiOLED:
         self.ip = subprocess.check_output(cmd, shell=True).decode("utf-8")
 
         # Get Time
-        self.zeit = zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         # Clear display.
         self.disp.fill(0)
