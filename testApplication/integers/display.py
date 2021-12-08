@@ -24,9 +24,6 @@ class PiOLED:
         self.font = ImageFont.load_default()
 
         # Get IP
-        # self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # self.s.connect(('1.1.1.1', 1))  # fiktiver Internetzugriff
-        # self.ip = self.s.getsockname()[0]  # ermittelt IP-Adresse
         cmd = "hostname -I | cut -d' ' -f1"
         self.ip = subprocess.check_output(cmd, shell=True).decode("utf-8")
 

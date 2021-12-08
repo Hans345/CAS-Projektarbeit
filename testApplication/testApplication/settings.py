@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -25,8 +25,12 @@ SECRET_KEY = 'django-insecure-o15e$yemp-hdbyb*6d218#h_jj6p!a64^fls%6jtn@6e7jz130
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Ermittelt IP-Adresse
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(('1.1.1.1', 1))
+ip = s.getsockname()[0]
 
+ALLOWED_HOSTS = ['127.0.0.1', ip]
 
 # Application definition
 
@@ -73,7 +77,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'testApplication.wsgi.application'
 ASGI_APPLICATION = 'testApplication.asgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -83,7 +86,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'database/myData.sqlite',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -103,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -116,7 +117,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
