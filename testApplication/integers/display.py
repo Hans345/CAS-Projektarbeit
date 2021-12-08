@@ -42,9 +42,6 @@ class PiOLED:
         self.disp.image(self.image)
         self.disp.show()
 
-        # Print
-        print("Display init done\n")
-
         # sleep
         time.sleep(1)
 

@@ -8,6 +8,7 @@
 
 import time
 import subprocess
+import datetime as dt
 
 from board import SCL, SDA
 import busio
@@ -53,11 +54,18 @@ draw.rectangle((0, 0, width, height), outline=0, fill=0)
 # Shell scripts for system monitoring from here:
 cmd = "hostname -I | cut -d' ' -f1"
 IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
+# Get Time
+zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 # Write four lines of text.
 draw.text((x, top + 0), "IP: " + IP, font=font, fill=255)
+draw.text((0, -2 + 8), zeit, font=font, fill=255)
 
 # Display image.
 disp.image(image)
 disp.show()
+
+# Start Webpage
+subprocess.Popen(['python3', 'manage.py', 'runserver', IP+':8000'])
+
 time.sleep(0.1)
