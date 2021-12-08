@@ -4,31 +4,37 @@ Python-Code welcher bei Start ausgeführt wird
 @author: Raphael Baumeler
 """
 # Display
-import datetime as dt
 import time
+import subprocess
 
+from board import SCL, SDA
 import busio
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
-import socket
 
 
 class PiOLED:
     def __init__(self):
         # init Display
-        self.i2c = busio.I2C(3, 2)
-        self.disp = adafruit_ssd1306.SSD1306_I2C(128, 32, self.i2c)
+        self.i2c = i2c = busio.I2C(SCL, SDA)
+        self.disp = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c)
         self.image = Image.new('1', (128, 32))
         self.draw = ImageDraw.Draw(self.image)
         self.font = ImageFont.load_default()
 
         # Get IP
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.s.connect(('1.1.1.1', 1))  # fiktiver Internetzugriff
-        self.ip = self.s.getsockname()[0]  # ermittelt IP-Adresse
+        # self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # self.s.connect(('1.1.1.1', 1))  # fiktiver Internetzugriff
+        # self.ip = self.s.getsockname()[0]  # ermittelt IP-Adresse
+        cmd = "hostname -I | cut -d' ' -f1"
+        self.ip = subprocess.check_output(cmd, shell=True).decode("utf-8")
 
         # Get Time
         self.zeit = zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        # Clear display.
+        self.disp.fill(0)
+        self.disp.show()
 
         # Draw Display
         self.draw.rectangle((0, 0, 128, 32), outline=0, fill=0)  # Draw box to clear
