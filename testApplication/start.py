@@ -54,7 +54,7 @@ draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
 # Shell scripts for system monitoring from here:
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect('1.1.1.1',1)
+s.connect(('1.1.1.1',1))
 ip = s.getsockname()[0]
 # Get Time
 zeit = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
