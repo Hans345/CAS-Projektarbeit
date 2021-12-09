@@ -86,8 +86,3 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'eRSum': float(self.dataRow["eReact_Tot"]),
                                   'freq': float(self.dataRow["freq"]),
                                   }))
-
-        await self.channel_layer.group_discard(
-            self.room_group_name,
-            self.channel
-        )
