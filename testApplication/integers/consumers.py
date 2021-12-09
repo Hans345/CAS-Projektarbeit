@@ -1,5 +1,6 @@
 import json
 from channels.generic.websocket import WebsocketConsumer
+from channels.exceptions import StopConsumer
 from pathlib import Path
 import pandas as pd
 import numpy as np
@@ -85,3 +86,6 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'eRSum': float(self.dataRow["eReact_Tot"]),
                                   'freq': float(self.dataRow["freq"]),
                                   }))
+
+    def disconnect(self, code):
+        raise StopConsumer()
