@@ -4320,3 +4320,18 @@
 #=#=#=# Syncrun started 2021-12-09T09:11:38Z
 #=#=#=#=# Propagation starts 2021-12-09T09:11:39Z (last step: 356 msec, total: 356 msec)
 #=#=#=# Syncrun finished 2021-12-09T09:11:39Z (last step: 25 msec, total: 382 msec)
+#=#=#=# Syncrun started 2021-12-09T09:41:19Z
+#=#=#=#=# Propagation starts 2021-12-09T09:41:19Z (last step: 255 msec, total: 255 msec)
+#=#=#=# Syncrun finished 2021-12-09T09:41:19Z (last step: 52 msec, total: 307 msec)
+#=#=#=# Syncrun started 2021-12-09T09:41:44Z
+#=#=#=#=# Propagation starts 2021-12-09T09:41:44Z (last step: 186 msec, total: 186 msec)
+||myData.sqlite|INST_SYNC|Up|1639042904|4ad8e5f85133e5c68265e34f94704acc|139264|4233840779oc641cdd42e0|3|Eine lokale Datei wurde während der Synchronisation geändert.|0|12288|1639041034||
+||myData.sqlite-journal|INST_NEW|Up|-3600||21032||3|Datei gelöscht|0|0|0||
+#=#=#=# Syncrun finished 2021-12-09T09:41:44Z (last step: 27 msec, total: 213 msec)
+#=#=#=# Syncrun started 2021-12-09T09:41:46Z
+#=#=#=#=# Propagation starts 2021-12-09T09:41:46Z (last step: 197 msec, total: 197 msec)
+09:41:46||myData.sqlite|INST_SYNC|Up|1639042904|213870d4a0b18902a94c9a33839d591a|139264|4233840779oc641cdd42e0|4||204|12288|1639041034|273f46d6-c40f-42cd-b41b-8e27aaefa637|
+#=#=#=# Syncrun finished 2021-12-09T09:41:47Z (last step: 1133 msec, total: 1330 msec)
+#=#=#=# Syncrun started 2021-12-09T09:42:37Z
+#=#=#=#=# Propagation starts 2021-12-09T09:42:38Z (last step: 1146 msec, total: 1146 msec)
+#=#=#=# Syncrun finished 2021-12-09T09:42:38Z (last step: 22 msec, total: 1169 msec)
