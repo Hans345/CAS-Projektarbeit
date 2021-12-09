@@ -86,6 +86,3 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'eRSum': float(self.dataRow["eReact_Tot"]),
                                   'freq': float(self.dataRow["freq"]),
                                   }))
-
-    def disconnect(self, code):
-        raise StopConsumer()
