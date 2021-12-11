@@ -1,7 +1,6 @@
 #! /bin/sh
 cd /home/pi/CAS-Projektarbeit/testApplication
-
+IP=$(hostname -I)
 python3 start.py
 python3 manage.py migrate
-IP=$(hostname -I)
-python3 manage.py runserver IP:8000
+python3 manage.py runserver eval "$IP":8000
