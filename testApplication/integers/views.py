@@ -4,7 +4,8 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    hostname = socket.gethostname()
-    local_ip = socket.gethostbyname(hostname)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('1.1.1.1', 1))
+    ip = s.getsockname()[0]
 
-    return render(request, 'index.html', context={'text': '0', 'ipAddress': local_ip})
+    return render(request, 'index.html', context={'text': '0', 'ipAddress': ip})
