@@ -69,7 +69,7 @@ disp.show()
 
 # Start Webpage
 # subprocess.Popen(['python3', 'manage.py', 'migrate'])
-# subprocess.Popen(['python3', 'manage.py', 'runserver', ip+':8000'])
+subprocess.Popen(['python3', 'manage.py', 'runserver', ip+':8000'])
 # subprocess.Popen(['python3', 'manage.py', 'runserver', '127.0.0.1:8000'])
 
 time.sleep(1)
