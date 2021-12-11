@@ -1,6 +1,6 @@
 #! /bin/sh
 cd /home/pi/CAS-Projektarbeit/testApplication
-IP=$(hostname -I)
+IP=$(hostname -I | awk '{ print $1 }')
 python3 start.py
 python3 manage.py migrate
 python3 manage.py runserver eval "$IP":8000
