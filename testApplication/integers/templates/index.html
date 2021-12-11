@@ -79,7 +79,7 @@
 <p>Datenblatt PRO380-Mod: <a href="https://ineprometering.com/pro380/">www.ineprometering.de</a>
 </p>
     <script>
-        var socket = new WebSocket('ws://localhost:8000/ws/some_url/');
+        var socket = new WebSocket('ws://{{ ipAddress }}:8000/ws/some_url/');
         socket.onmessage = function (event) {
             var data = JSON.parse(event.data);
             console.log(data);
