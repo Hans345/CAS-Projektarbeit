@@ -16,7 +16,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
         self.size_sqlite = 0
         self.size_csv = 0
         # database Param
-        self.max_Size = 1000000  # max Size (Byte)
+        self.max_Size = 1048576  # max Size (Byte)
         self.path_csv = Path("./database/myData.csv")
         self.path_sqlite = Path("./database/myData.sqlite")
         # modbus Param
