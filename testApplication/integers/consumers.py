@@ -86,3 +86,6 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'eRSum': float(self.dataRow["eReact_Tot"]),
                                   'freq': float(self.dataRow["freq"]),
                                   }))
+            # TODO
+            # Webseite wird geschlossen: while Schleife mittels break verlassen
+            # Server wird beendet (Terminal: Ctrl +C), while-Schleife soll ebenfalls mit break verlassen werden.
