@@ -98,13 +98,11 @@ def del_data_col(data, s):
 
 
 ###############################################################################
-def get_data():
+def get_data(port, adr):
     """
     :return: type: DataFrame
     """
     # init Modbus
-    port = '/dev/ttyUSB0'
-    adr = 1
     mod_bus = init_modbus(port, adr)
 
     # calc Register Addresses
