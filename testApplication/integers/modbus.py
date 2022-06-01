@@ -23,7 +23,7 @@ def init_modbus(prt, slave_adr):
     # Set up instrument
     instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU, debug=True)
     # Make the settings explicit
-    instrument.serial.baudrate = 1200  # Baud
+    instrument.serial.baudrate = 4800  # Baud
     instrument.serial.bytesize = 8
     instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
     instrument.serial.stopbits = 1
@@ -31,6 +31,12 @@ def init_modbus(prt, slave_adr):
     # Good practice
     instrument.close_port_after_each_call = True
     instrument.clear_buffers_before_each_transaction = True
+
+    # Check all prts and slave_adr
+    try:
+        print("Voltage L1 received: " + instrument.read_float(20482, decimals=3))
+    except IOError:
+        print("NO DATA!")
 
     return instrument
 
