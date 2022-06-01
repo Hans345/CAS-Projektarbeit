@@ -23,13 +23,13 @@ def init_modbus(prt, slave_adr):
     # Set up instrument
     instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU, debug=True)
     # Make the settings explicit
-    instrument.serial.baudrate = 4800  # Baud
+    instrument.serial.baudrate = 1200  # Baud
     instrument.serial.bytesize = 8
     instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
     instrument.serial.stopbits = 1
     instrument.serial.timeout = 1  # seconds
     # Good practice
-    instrument.close_port_after_each_call = False
+    instrument.close_port_after_each_call = True
     instrument.clear_buffers_before_each_transaction = True
 
     return instrument
