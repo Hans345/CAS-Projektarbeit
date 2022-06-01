@@ -32,16 +32,6 @@ def init_modbus(prt, slave_adr):
     instrument.close_port_after_each_call = False
     instrument.clear_buffers_before_each_transaction = True
 
-    # Check all prts and slave_adr
-    # calc Register Addresses
-    adr_space1 = get_adr_space("5000", "5030", "02")
-
-    # read Data and Store to pandas Dataframe
-    s1 = (["V", "V_L1", "V_L2", "V_L3", "freq", "I", "I_L1", "I_L2", "I_L3", "p_sum", "p_L1", "p_L2", "p_L3", "q_sum",
-           "q_L1", "q_L2", "q_L3", "s_sum", "s_L1", "s_L2", "s_L3", "pf", "pf_L1", "pf_L2", "pf_L3"])
-    data1 = get_data_row(instrument, adr_space1, s1)
-    print("Voltage L1 received: " + data1["V_L1"])
-
     return instrument
 
 
