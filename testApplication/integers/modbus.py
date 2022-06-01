@@ -21,9 +21,9 @@ def init_modbus(prt, slave_adr):
     :return: instrument: minimalmodbusobject
     """
     # Set up instrument
-    instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU, debug=True)
+    instrument = minimalmodbus.Instrument(prt, 1, mode=minimalmodbus.MODE_RTU, debug=True)
     # Make the settings explicit
-    instrument.serial.baudrate = 9600  # Baud
+    instrument.serial.baudrate = 1200  # Baud
     instrument.serial.bytesize = 8
     instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
     instrument.serial.stopbits = 1
