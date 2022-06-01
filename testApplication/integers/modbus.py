@@ -103,8 +103,8 @@ def get_data():
     :return: type: DataFrame
     """
     # init Modbus
-    port = '/dev/ttyUSB0'
-    adr = 1
+    port = '/dev/ttyUSB1'
+    adr = 2
     mod_bus = init_modbus(port, adr)
 
     # calc Register Addresses
