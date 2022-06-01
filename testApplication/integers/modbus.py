@@ -104,7 +104,7 @@ def get_data():
     """
     # init Modbus
     port = '/dev/ttyUSB1'
-    adr = 1
+    adr = 5
     mod_bus = init_modbus(port, adr)
 
     # calc Register Addresses
