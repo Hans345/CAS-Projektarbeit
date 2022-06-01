@@ -17,11 +17,11 @@ import pandas as pd
 def init_modbus(prt, slave_adr):
     """
     :param prt: type: string
-    :param slave_adr:  type: string
+    :param slave_adr:  type: int
     :return: instrument: minimalmodbusobject
     """
     # Set up instrument
-    instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU)
+    instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU, debug=True)
     # Make the settings explicit
     instrument.serial.baudrate = 9600  # Baud
     instrument.serial.bytesize = 8
@@ -29,7 +29,7 @@ def init_modbus(prt, slave_adr):
     instrument.serial.stopbits = 1
     instrument.serial.timeout = 1  # seconds
     # Good practice
-    instrument.close_port_after_each_call = True
+    instrument.close_port_after_each_call = False
     instrument.clear_buffers_before_each_transaction = True
 
     return instrument
@@ -104,7 +104,7 @@ def get_data():
     """
     # init Modbus
     port = '/dev/ttyUSB1'
-    adr = 2
+    adr = 1
     mod_bus = init_modbus(port, adr)
 
     # calc Register Addresses
