@@ -29,7 +29,7 @@ def init_modbus(prt, slave_adr):
     instrument.serial.stopbits = 1
     instrument.serial.timeout = 1  # seconds
     # Good practice
-    instrument.close_port_after_each_call = True
+    instrument.close_port_after_each_call = False
     instrument.clear_buffers_before_each_transaction = True
 
     # Check all prts and slave_adr
@@ -109,7 +109,7 @@ def get_data():
     :return: type: DataFrame
     """
     # init Modbus
-    port = '/dev/ttyUSB1'
+    port = '/dev/ttyUSB0'
     adr = 1
     mod_bus = init_modbus(port, adr)
 
