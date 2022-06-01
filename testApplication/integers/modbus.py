@@ -34,7 +34,7 @@ def init_modbus(prt, slave_adr):
 
     # Check all prts and slave_adr
     try:
-        print("Voltage L1 received: " + instrument.read_float(20482, decimals=3))
+        print("Voltage L1 received: " + instrument.read_float(20482))
     except IOError:
         print("NO DATA!")
 
