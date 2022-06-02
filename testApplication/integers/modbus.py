@@ -21,7 +21,7 @@ def init_modbus(prt, slave_adr):
     :return: instrument: minimalmodbusobject
     """
     # Set up instrument
-    instrument = minimalmodbus.Instrument(prt, 1, mode=minimalmodbus.MODE_RTU, debug=True)
+    instrument = minimalmodbus.Instrument(prt, slave_adr, mode=minimalmodbus.MODE_RTU, debug=True)
     # Make the settings explicit
     instrument.serial.baudrate = 9600  # Baud
     instrument.serial.bytesize = 8
@@ -103,7 +103,7 @@ def get_data():
     :return: type: DataFrame
     """
     # init Modbus
-    port = '/dev/ttyUSB1'
+    port = '/dev/ttyUSB0'
     adr = 1
     mod_bus = init_modbus(port, adr)
 
