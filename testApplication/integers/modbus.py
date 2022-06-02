@@ -25,7 +25,7 @@ def init_modbus(prt, slave_adr):
     # Make the settings explicit
     instrument.serial.baudrate = 9600  # Baud
     instrument.serial.bytesize = 8
-    instrument.serial.parity = minimalmodbus.serial.PARITY_ODD
+    instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
     instrument.serial.stopbits = 1
     instrument.serial.timeout = 1  # seconds
     # Good practice
