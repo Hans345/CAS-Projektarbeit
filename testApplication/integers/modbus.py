@@ -103,7 +103,7 @@ def get_data():
     :return: type: DataFrame
     """
     # init Modbus
-    port = '/dev/ttyUSB1'
+    port = '/dev/ttyUSB0'
     adr = 5
     mod_bus = init_modbus(port, adr)
 
