@@ -6,8 +6,8 @@ Bibliothek zur Kommunikation mit Engerie-Geräte
 import minimalmodbus
 
 # init Modbus
-instrument = minimalmodbus.Instrument('/dev/ttyUSB0', 1, mode=minimalmodbus.MODE_RTU, debug=True)
-instrument.serial.baudrate = 9600  # Baud
+instrument = minimalmodbus.Instrument('/dev/ttyUSB1', 1, mode=minimalmodbus.MODE_RTU, debug=True)
+instrument.serial.baudrate = 1200  # Baud
 instrument.serial.bytesize = 8
 instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
 instrument.serial.stopbits = 1
