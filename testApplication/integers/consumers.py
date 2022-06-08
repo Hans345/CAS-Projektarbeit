@@ -89,7 +89,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
 
             # TODO: check Port
             # update webpage: Pruefstand Ecke
-            self.dataRow_pruefstandEcke = get_data(port='/dev/ttyUSB1', adr=1)
+            self.dataRow_pruefstandEcke = get_data(port='/dev/ttyUSB0', adr=2)
             self.send(json.dumps({'VL1_e': float(self.dataRow_pruefstandEcke["V_L1"]),
                                   'VL2_e': float(self.dataRow_pruefstandEcke["V_L2"]),
                                   'VL3_e': float(self.dataRow_pruefstandEcke["V_L3"]),
