@@ -37,7 +37,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
 
         i = 0
         # create new database with maxsize
-        for i in range(100):  # after 100 measurements --> WebSocket DISCONNECT
+        for i in range(10):  # after 10 measurements --> WebSocket DISCONNECT
             # get data from PRO380-Mod: Prüfstand Links
             self.dataRow_pruefstandLinks = get_data(port='/dev/ttyUSB0', adr=1)
             # update database only Pruefstand Links!
