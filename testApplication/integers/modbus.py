@@ -29,7 +29,7 @@ def init_modbus(prt, slave_adr):
     instrument.serial.stopbits = 1
     instrument.serial.timeout = 0.2  # seconds
     # Good practice
-    instrument.close_port_after_each_call = True
+    instrument.close_port_after_each_call = False
     instrument.clear_buffers_before_each_transaction = False
 
     return instrument
