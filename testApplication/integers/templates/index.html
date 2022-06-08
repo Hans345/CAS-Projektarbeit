@@ -10,7 +10,7 @@
 <!--- Data Table -->
 <h1>Real-Time Daten Tabelle</h1>
 <table>
-	<caption>Energie Daten PRO380-Mod</caption>
+	<caption>Energie Daten PRO380-Mod: Prüfstand Rechts vom Lift</caption>
 	<thead>
 		<tr>
 			<td rowspan="2"></td>
@@ -76,6 +76,76 @@
 		</tr>
 	</tbody>
 </table>
+<p>
+    <br>
+</p>
+<table>
+	<caption>Energie Daten PRO380-Mod: Prüfstand in der Ecke</caption>
+	<thead>
+		<tr>
+			<td rowspan="2"></td>
+			<th scope="col" rowspan="2">Spannung in [V]</th>
+			<th scope="col" rowspan="2">Strom in [A]</th>
+			<th scope="col" rowspan="2">Leistungsfaktor</th>
+            <th scope="col" rowspan="2">Frequenz in [Hz]</th>
+			<th scope="col" rowspan="2">Wirkleistung in [kW]</th>
+			<th scope="col" rowspan="2">Blindleistung in [kvar]</th>
+			<th scope="col" rowspan="2">Scheinleistung in [kVA]</th>
+            <th scope="col" rowspan="2">Wirkenergie in [kWh]</th>
+            <th scope="col" rowspan="2">Blindenergie in [kvarh]</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">L1</th>
+			<td id="VL1_e">{{ text }}</td>
+			<td id="IL1_e">{{ text }}</td>
+			<td id="PF1_e">{{ text }}</td>
+            <td>-</td>
+			<td id="p1_e">{{ text }}</td>
+			<td id="q1_e">{{ text }}</td>
+			<td id="s1_e">{{ text }}</td>
+			<td id="eA1_e">{{ text }}</td>
+			<td id="eR1_e">{{ text }}</td>
+		</tr>
+		<tr>
+			<th scope="row">L2</th>
+			<td id="VL2_e">{{ text }}</td>
+			<td id="IL2_e">{{ text }}</td>
+			<td id="PF2_e">{{ text }}</td>
+            <td>-</td>
+			<td id="p2_e">{{ text }}</td>
+			<td id="q2_e">{{ text }}</td>
+			<td id="s2_e">{{ text }}</td>
+			<td id="eA2_e">{{ text }}</td>
+			<td id="eR2_e">{{ text }}</td>
+		</tr>
+		<tr>
+			<th scope="row">L3</th>
+			<td id="VL3_e">{{ text }}</td>
+			<td id="IL3_e">{{ text }}</td>
+			<td id="PF3_e">{{ text }}</td>
+            <td>-</td>
+			<td id="p3_e">{{ text }}</td>
+			<td id="q3_e">{{ text }}</td>
+			<td id="s3_e">{{ text }}</td>
+			<td id="eA3_e">{{ text }}</td>
+			<td id="eR3_e">{{ text }}</td>
+		</tr>
+    		<tr>
+			<th scope="row">Summe/Mittelwert</th>
+			<td id="VMean_e">{{ text }}</td>
+			<td id="IMean_e">{{ text }}</td>
+			<td id="PFMean_e">{{ text }}</td>
+            <td id="freq_e">{{ text }}</td>
+			<td id="pSum_e">{{ text }}</td>
+			<td id="qSum_e">{{ text }}</td>
+			<td id="sSum_e">{{ text }}</td>
+			<td id="eASum_e">{{ text }}</td>
+			<td id="eRSum_e">{{ text }}</td>
+		</tr>
+	</tbody>
+</table>
 <p>Datenblatt PRO380-Mod: <a href="https://ineprometering.com/pro380/">www.ineprometering.de</a>
 </p>
     <script>
@@ -83,6 +153,7 @@
         socket.onmessage = function (event) {
             var data = JSON.parse(event.data);
             console.log(data);
+            <!-- update Pruefstand Links -->
             <!-- Phase 1 -->
             document.querySelector('#VL1').innerHTML = data.VL1;
             document.querySelector('#IL1').innerHTML = data.IL1;
@@ -119,6 +190,44 @@
             document.querySelector('#sSum').innerHTML = data.sSum;
             document.querySelector('#eASum').innerHTML = data.eASum;
             document.querySelector('#eRSum').innerHTML = data.eRSum;
+
+            <!-- update Pruefstand Ecke -->
+            <!-- Phase 1 -->
+            document.querySelector('#VL1_e').innerHTML = data.VL1_e;
+            document.querySelector('#IL1_e').innerHTML = data.IL1_e;
+            document.querySelector('#PF1_e').innerHTML = data.PF1_e;
+            document.querySelector('#p1_e').innerHTML = data.p1_e;
+            document.querySelector('#q1_e').innerHTML = data.q1_e;
+            document.querySelector('#s1_e').innerHTML = data.s1_e;
+            document.querySelector('#eA1_e').innerHTML = data.eA1_e;
+            document.querySelector('#eR1_e').innerHTML = data.eR1_e;
+            <!-- Phase 2 -->
+            document.querySelector('#VL2_e').innerHTML = data.VL2_e;
+            document.querySelector('#IL2_e').innerHTML = data.IL2_e;
+            document.querySelector('#PF2_e').innerHTML = data.PF2_e;
+            document.querySelector('#p2_e').innerHTML = data.p2_e;
+            document.querySelector('#q2_e').innerHTML = data.q2_e;
+            document.querySelector('#eA2_e').innerHTML = data.eA2_e;
+            document.querySelector('#eR2_e').innerHTML = data.eR2_e;
+            <!-- Phase 3 -->
+            document.querySelector('#VL3_e').innerHTML = data.VL3_e;
+            document.querySelector('#IL3_e').innerHTML = data.IL3_e;
+            document.querySelector('#PF3_e').innerHTML = data.PF3_e;
+            document.querySelector('#p3_e').innerHTML = data.p3_e;
+            document.querySelector('#q3_e').innerHTML = data.q3_e;
+            document.querySelector('#s3_e').innerHTML = data.s3_e;
+            document.querySelector('#eA3_e').innerHTML = data.eA3_e;
+            document.querySelector('#eR3_e').innerHTML = data.eR3_e;
+            <!-- Sum/Mean -->
+            document.querySelector('#VMean_e').innerHTML = data.VMean_e;
+            document.querySelector('#IMean_e').innerHTML = data.IMean_e;
+            document.querySelector('#PFMean_e').innerHTML = data.PFMean_e;
+            document.querySelector('#freq_e').innerHTML = data.freq_e;
+            document.querySelector('#pSum_e').innerHTML = data.pSum_e;
+            document.querySelector('#qSum_e').innerHTML = data.qSum_e;
+            document.querySelector('#sSum_e').innerHTML = data.sSum_e;
+            document.querySelector('#eASum_e').innerHTML = data.eASum_e;
+            document.querySelector('#eRSum_e').innerHTML = data.eRSum_e;
         }
     </script>
 </body>

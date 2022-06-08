@@ -27,10 +27,10 @@ def init_modbus(prt, slave_adr):
     instrument.serial.bytesize = 8
     instrument.serial.parity = minimalmodbus.serial.PARITY_EVEN
     instrument.serial.stopbits = 1
-    instrument.serial.timeout = 1  # seconds
+    instrument.serial.timeout = 0.2  # seconds
     # Good practice
-    instrument.close_port_after_each_call = True
-    instrument.clear_buffers_before_each_transaction = True
+    instrument.close_port_after_each_call = False
+    instrument.clear_buffers_before_each_transaction = False
 
     return instrument
 
@@ -98,13 +98,11 @@ def del_data_col(data, s):
 
 
 ###############################################################################
-def get_data():
+def get_data(port, adr):
     """
     :return: type: DataFrame
     """
     # init Modbus
-    port = '/dev/ttyUSB1'
-    adr = 1
     mod_bus = init_modbus(port, adr)
 
     # calc Register Addresses
