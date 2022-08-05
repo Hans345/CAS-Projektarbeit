@@ -4,6 +4,7 @@ from channels.exceptions import StopConsumer
 from pathlib import Path
 import pandas as pd
 import numpy as np
+import time
 
 from .database import del_database, store_data_csv, store_data_sqlite3
 from .display import PiOLED
@@ -87,6 +88,8 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'freq': float(self.dataRow_pruefstandLinks["freq"]),
                                   }))
 
+			time.sleep(3) # sleep for 3 Seconds
+			
             # TODO: check Port
             # update webpage: Pruefstand Ecke
             self.dataRow_pruefstandEcke = get_data(port='/dev/ttyUSB0', adr=2)
