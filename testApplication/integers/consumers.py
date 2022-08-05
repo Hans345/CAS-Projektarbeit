@@ -87,9 +87,8 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'eRSum': float(self.dataRow_pruefstandLinks["eReact_Tot"]),
                                   'freq': float(self.dataRow_pruefstandLinks["freq"]),
                                   }))
-
-			time.sleep(3) # sleep for 3 Seconds
-			
+            time.sleep(2) # sleep for 2 Seconds
+            
             # TODO: check Port
             # update webpage: Pruefstand Ecke
             self.dataRow_pruefstandEcke = get_data(port='/dev/ttyUSB0', adr=2)
@@ -129,6 +128,7 @@ class WSConsumer(WebsocketConsumer):  # subclass from WebsocketConsumer class
                                   'eRSum_e': float(self.dataRow_pruefstandEcke["eReact_Tot"]),
                                   'freq_e': float(self.dataRow_pruefstandEcke["freq"]),
                                   }))
+            time.sleep(2) # sleep for 2 Seconds
             # TODO
             # Webseite wird geschlossen: while Schleife mittels break verlassen
             # Server wird beendet (Terminal: Ctrl +C), while-Schleife soll ebenfalls mit break verlassen werden.
